@@ -1,36 +1,15 @@
-Strange Case
+Luckystar's tiny galaxy
 ============
 
-Strange Case is a simple, clean and responsive theme for Jekyll. 
+个人代码博客，基于[Stange Case](http://thephuse.github.io/strange_case/)修改。
+目前只是照猫画虎，有了初步雏形，后续我会陆续学习，加入侧边栏和评论模块。
 
 
-### Demo 
+### 一些有用的资源 
 
-[Demo](http://thephuse.github.io/strange_case/)
+[Markdown语法说明](http://markdown.tw/)
+[Jekyll主题](http://jekyllthemes.org/)
 
-### Overview 
 
-* Fixed Sidebar with cover image
-* Minimal design 
-* Easy to configure
-* Browser support: Latest releases of Chrome, Safari, Firefox, Mobile Safari and IE 9+.
-
-### Screenshots
-
-![screenshot](/images/screenshot1.png)
-![screenshot](/images/screenshot2.png)
-
-### Setup
-
-1. Install [Jekyll](http://jekyllrb.com/)
-2. Fork or [download](https://github.com/thephuse/strange_case) this theme repo
-3. Edit the `_config.yml` file (if you make any additional changes to this file, you will need to stop and restart your command in the next step)
-4. From your command line, switch to your site directory and build using `jekyll serve`
-5. Site will be accessible by viewing http://localhost:4000/strange_case/
-
-### Download
-
-[Download](https://github.com/thephuse/strange_case)
-
-### License
+### 开源协议
 * [MIT](http://opensource.org/licenses/MIT)
