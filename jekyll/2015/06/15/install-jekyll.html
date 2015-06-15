@@ -110,54 +110,40 @@
 <blockquote>
 <p>ssh –T git@github.com</p>
 </blockquote>
+<div class="highlight"><pre><code class="language-text" data-lang="text">如果看到：
 
-<p>如果看到：</p>
+&gt; The authenticity of host &#39;github.com (192.30.252.131)&#39; can&#39;t be established.
+RSA key fingerprint is aa:bb:……:yy:zz:.
 
-<blockquote>
-<p>The authenticity of host &#39;github.com (192.30.252.131)&#39; can&#39;t be established.
-RSA key fingerprint is aa:bb:……:yy:zz:.</p>
+&gt; Are you sure you want to continue connecting (yes/no)? no
 
-<p>Are you sure you want to continue connecting (yes/no)? no</p>
+&gt; Host key verification failed.
 
-<p>Host key verification failed.</p>
-</blockquote>
-
-<p>则说明可以连接。</p>
-
+则说明可以连接。
+</code></pre></div>
 <h3>2. 创建本地ssh秘钥</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">检查~/.ssh目录下是否有id_rsa（私钥）和id_rsa.pub（密钥），如果有，则备份出来，删除源文件，再执行如下语句，没有则直接执行：
 
-<p>检查~/.ssh目录下是否有id<em>rsa（私钥）和id</em>rsa.pub（密钥），如果有，则备份出来，删除源文件，再执行如下语句，没有则直接执行：</p>
-
-<blockquote>
-<p>ssh-keygen –t rsa –C “你的GitHub登录用Email地址@gmail.com”</p>
-</blockquote>
-
+&gt; ssh-keygen –t rsa –C “你的GitHub登录用Email地址@gmail.com”
+</code></pre></div>
 <h3>3. 登录GitHub设置公钥</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">在GitHub中登录你的账号，点击首页右上角”Settings”按钮，选择”SSH keys”→”Add SSH key”，将id_rsa.pub文件中内容复制进key栏中，title自定。
 
-<p>在GitHub中登录你的账号，点击首页右上角”Settings”按钮，选择”SSH keys”→”Add SSH key”，将id_rsa.pub文件中内容复制进key栏中，title自定。</p>
+保存之后再次检查ssh连接情况：
 
-<p>保存之后再次检查ssh连接情况：</p>
+&gt; ssh –T git@github.com
 
-<blockquote>
-<p>ssh –T git@github.com</p>
-</blockquote>
+如果看到如下所示，则表示成功：
 
-<p>如果看到如下所示，则表示成功：</p>
-
-<blockquote>
-<p>Hi LuckyStar04! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</p>
-</blockquote>
-
+&gt; Hi LuckyStar04! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div>
 <h3>4. Clone你的GitHub项目</h3>
+<div class="highlight"><pre><code class="language-text" data-lang="text">有以下两种方式clone你的代码到本地：
 
-<p>有以下两种方式clone你的代码到本地：</p>
+&gt; git clone git@github.com:alioth310/test.git
 
-<blockquote>
-<p>git clone git@github.com:alioth310/test.git</p>
-
-<p>git clone git://github.com/alioth310/test.git</p>
-</blockquote>
-
+&gt; git clone git://github.com/alioth310/test.git
+</code></pre></div>
 <h2>开始享受jekyll吧！</h2>
 
 <p>以下几个网站值得参考：</p>
