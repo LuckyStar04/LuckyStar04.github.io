@@ -25,7 +25,7 @@ body {
 
 h1,
 h2 {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans','Microsoft YaHei',arial,sans-serif;
 }
 
 h1 {
@@ -44,9 +44,9 @@ h2 {
 
 h3 {
   font-weight: 600;
-  font-size: 20px;
-  margin-bottom: 18px;
-  margin-top: 36px;
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 blockquote {
