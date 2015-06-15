@@ -53,7 +53,11 @@
 
 <article>
   <div class="container">
-    <h2>安装ruby-install</h2>
+    <p>虽然也有Windows版，但是Jekyll官方推荐在Linux上运行。以下是我的安装过程，仅作参考。</p>
+
+<p>这里假设你已经成功安装了ubuntu，而且已经有了GitHub账号，创建了个人主页用的repository。</p>
+
+<h2>安装ruby-install</h2>
 
 <blockquote>
 <p>wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz</p>
@@ -71,7 +75,9 @@
 <p>ruby-install ruby 2.2.2</p>
 </blockquote>
 
-<p>因为ruby-install旨在同一台电脑上安装和管理多个不同版本的ruby，所以这里并没有将ruby的路径加入环境变量PATH里。需要加的童鞋可以自己将<code>~/.rubies/ruby-2.2.2/bin</code>加入PATH。</p>
+<p>因为ruby-install旨在同一台电脑上安装和管理多个不同版本的ruby，所以ruby-install并没有将ruby的路径加入环境变量PATH里。</p>
+
+<p>需要加的童鞋可以自己将<code>~/.rubies/ruby-2.2.2/bin</code>加入PATH。</p>
 
 <h2>配置RubyGems的源</h2>
 
