@@ -38,32 +38,32 @@
           <span class="meta">
             15 Jun 2015
           </span>
-          <h2>安装ruby-install</h2>
+          <h1>安装ruby-install</h1>
 <div class="highlight"><pre><code class="language-text" data-lang="text">wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
 tar -xzvf ruby-install-0.5.0.tar.gz
 cd ruby-install-0.5.0/
 sudo make install
 </code></pre></div>
-<h2>安装ruby 2.2.2</h2>
+<h1>安装ruby 2.2.2</h1>
 <div class="highlight"><pre><code class="language-text" data-lang="text">ruby-install ruby 2.2.2
 </code></pre></div>
 <p>因为ruby-install旨在同一台电脑上安装和管理多个不同版本的ruby，所以这里并没有将ruby的路径加入环境变量PATH里。需要加的童鞋可以自己将”~/.rubies/ruby-2.2.2/bin”加入PATH。</p>
 
-<h2>配置RubyGems的源</h2>
+<h1>配置RubyGems的源</h1>
 <div class="highlight"><pre><code class="language-text" data-lang="text">Cd ~/.rubies/ruby-2.2.2/bin
 ./gem sources –remove https://rubygems.org/
 ./gem sources –a http://ruby.taobao.org/
 </code></pre></div>
-<h2>安装jekyll</h2>
+<h1>安装jekyll</h1>
 <div class="highlight"><pre><code class="language-text" data-lang="text">sudo apt-get install nodejs
 ./gems install jekyll
 </code></pre></div>
-<h2>安装Git</h2>
+<h1>安装Git</h1>
 <div class="highlight"><pre><code class="language-text" data-lang="text">sudo apt-get install git git-core git-gui git-doc git-svn git-cvs gitweb gitk git-email git-daemon-run git-el git-arch
 </code></pre></div>
-<h2>配置Git</h2>
+<h1>配置Git</h1>
 
-<h1>1) 检查ssh可用性</h1>
+<h2>1) 检查ssh可用性</h2>
 <div class="highlight"><pre><code class="language-text" data-lang="text">ssh –T git@github.com
 </code></pre></div>
 <p>如果看到：
@@ -73,12 +73,12 @@ RSA key fingerprint is aa:bb:……:yy:zz:.
     Host key verification failed.
 则说明可以连接。</p>
 
-<h1>2) 创建本地ssh秘钥</h1>
+<h2>2) 创建本地ssh秘钥</h2>
 
 <p>检查~/.ssh目录下是否有id<em>rsa（私钥）和id</em>rsa.pub（密钥），如果有，则备份出来，删除源文件，再执行如下语句，没有则直接执行：
     ssh-keygen –t rsa –C “你的GitHub登录用Email地址@gmail.com”</p>
 
-<h1>3) 登录GitHub设置公钥</h1>
+<h2>3) 登录GitHub设置公钥</h2>
 
 <p>在GitHub中登录你的账号，点击首页右上角”Settings”按钮，选择”SSH keys”→”Add SSH key”，将id_rsa.pub文件中内容复制进key栏中，title自定。
 保存之后再次检查ssh连接情况：
@@ -86,15 +86,17 @@ RSA key fingerprint is aa:bb:……:yy:zz:.
 如果看到如下所示，则表示成功：
     Hi LuckyStar04! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</p>
 
-<h1>4) Clone你的GitHub项目</h1>
+<h2>4) Clone你的GitHub项目</h2>
 
 <p>有以下两种方式clone你的代码到本地：
     git clone git@github.com:alioth310/test.git
     git clone git://github.com/alioth310/test.git</p>
 
-<h2>开始享受jekyll吧！</h2>
+<h1>开始享受jekyll吧！</h1>
 
-<p>可以参考<a href="http://jekyll.bootcss.com/docs/home/">Jekyll中文网</a></p>
+<p>以下几个网站值得参考：
+<a href="http://markdown.tw/">Markdown语法说明</a>
+<a href="http://jekyll.bootcss.com/docs/home/">Jekyll中文网</a></p>
 
         </li>
       
