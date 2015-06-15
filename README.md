@@ -1,17 +1,13 @@
-Luckystar's tiny galaxy
+Strange Case
 ============
 
-基于[strange_case](http://thephuse.github.io/strange_case/)的Jekyll博客。
+基于[Jekyll](https://github.com/jekyll/jekyll)的[Strange_case](https://github.com/thephuse/strange_case)模板的技术博客。
 
 
+### 个人主页 
+
+[Luckystar's tiny galaxy](http://www.myluckystar.pub/)
 
 
-### 一些有用的链接：
-
-[Markdown语法说明](http://markdown.tw/)
-
-[Jekyll主题站](http://jekyllthemes.org/)
-
-### 开源协议：
-
+### 开源协议
 * [MIT](http://opensource.org/licenses/MIT)
