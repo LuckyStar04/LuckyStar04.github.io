@@ -1,4 +1,4 @@
-Strange Case
+Luckystar's personal tech blog.
 ============
 
 基于[Jekyll](https://github.com/jekyll/jekyll)的[Strange_case](https://github.com/thephuse/strange_case)模板的技术博客。
