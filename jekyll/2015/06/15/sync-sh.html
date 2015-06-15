@@ -18,11 +18,11 @@
   <link href='http://fonts.useso.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <header style="background-image: url(/images/php.png);">
+  <header style="background-image: url(/images/Galaxy.png);">
   <div class="container post-container">
     <a href="/" class="home_button"></a>
     <div class="inner-container">
-      <h1>PHP学习笔记</h1>
+      <h1>用于Jekyll博客同步的小脚本</h1>
       <ul class="meta">
         <li>
           <span>
@@ -34,24 +34,18 @@
           <span>
             Category
           </span>
-          php
+          jekyll
         </li>
       </ul>      
     </div>
     <ul class="pagination">
       
         <li class="previous">
-          <a href="/jekyll/2015/06/15/install-jekyll.html">
+          <a href="/php/2015/06/15/php-note.html">
             Previous
           </a>
         </li>
       
-      
-      <li class="next">
-        <a href="/jekyll/2015/06/15/sync-sh.html">
-          Next
-        </a>
-      </li>
       
     </ul>
   </div>
@@ -59,36 +53,35 @@
 
 <article>
   <div class="container">
-    <h2>PHP</h2>
+    <p>因为通过Git更新Jekyll的步骤太繁琐了，所以写了一个小脚本，用于同步本地site到GitHub。</p>
 
-<p>PHP的代码运行在服务器端。</p>
+<p>首先要在_config.yml中加上：</p>
 
-<p>PHP interpreter需要依赖于Apache或者IIS，并在Apache或IIS上做相应的配置工作。</p>
+<blockquote>
+<p>exclude: [luckystar04.github.com,sync.sh]</p>
+</blockquote>
 
-<h2>XHTML 1.0 过渡性文档</h2>
+<p>然后新建sync.sh文件，chmod改为755，输入以下脚本：</p>
 
-<p>语法：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+<blockquote>
+<p>jekyll build</p>
 
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot; lang=&quot;en&quot;&gt;
+<p>echo &quot;输入本次修改的tag：&quot;</p>
 
-&lt;head&gt;
+<p>read tag</p>
 
-    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html: charset=utf-8&quot; /&gt;
+<p>cp -rf ./_site/* ./luckystar04.github.com/</p>
 
-    &lt;title&gt;Page Title&lt;/title&gt;
+<p>cd luckystar04.github.com</p>
 
-&lt;/head&gt;
+<p>git add .</p>
 
-&lt;body&gt;
+<p>git commit -a -m &quot;${tag}&quot;</p>
 
-&lt;/body&gt;
+<p>git push origin</p>
+</blockquote>
 
-&lt;/html&gt;
-
-&lt;meta&gt;标签为元数据标签。
-</code></pre></div>
-<h2>未完待续</h2>
+<p>大功告成！赶紧试一试。</p>
 
   </div>
 </article>
