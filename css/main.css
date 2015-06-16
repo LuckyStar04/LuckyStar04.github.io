@@ -50,7 +50,7 @@ h3 {
 }
 
 blockquote {
-  font-family: monospace,"Microsoft YaHei","Arial";
+  font-family: "Simsun",monospace,"Microsoft YaHei","Arial";
   border-left: 5px solid #ddd;
   margin: 40px 1em;
   padding-left: 12px;
@@ -58,7 +58,7 @@ blockquote {
 }
 
 code {
-  font-family: monospace,"Microsoft YaHei","Arial";
+  font-family: "Simsun",monospace,"Microsoft YaHei","Arial";
 }
 
 @media (max-width: 960px) {
