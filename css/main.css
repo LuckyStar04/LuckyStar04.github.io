@@ -25,7 +25,7 @@ body {
 
 h1,
 h2 {
-  font-family: 'Open Sans','Microsoft YaHei',arial,sans-serif;
+  font-family: 'Open Sans','Microsoft YaHei',"arial",sans-serif;
 }
 
 h1 {
@@ -50,10 +50,15 @@ h3 {
 }
 
 blockquote {
+  font-family: monospace,"Microsoft YaHei","Arial";
   border-left: 5px solid #ddd;
   margin: 40px 1em;
   padding-left: 12px;
   color: #666;
+}
+
+code {
+  font-family: monospace,"Microsoft YaHei","Arial";
 }
 
 @media (max-width: 960px) {
