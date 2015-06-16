@@ -6,6 +6,14 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'DejaVuSansMono';
+  src: url('fonts/DejaVuSansMono-webfont.eot?') format('eot'),
+       url('fonts/DejaVuSansMono-webfont.woff') format('woff'),
+       url('fonts/DejaVuSansMono-webfont.ttf') format('truetype'),
+       url('fonts/DejaVuSansMono-webfont.svg#webfont') format('svg');
+}
+
 html,
 body {
   height: 100%;
@@ -50,7 +58,7 @@ h3 {
 }
 
 blockquote {
-  font-family: "Droid Sans Mono","Microsoft YaHei","Arial",sans-serif;
+  font-family: "DejaVuSansMono","Microsoft YaHei","Arial",sans-serif;
   border-left: 5px solid #ddd;
   margin: 40px 1em;
   padding-left: 12px;
@@ -58,7 +66,7 @@ blockquote {
 }
 
 code {
-  font-family: "Droid Sans Mono","Microsoft YaHei","Arial",sans-serif;
+  font-family: "DejaVuSansMono","Microsoft YaHei","Arial",sans-serif;
 }
 
 @media (max-width: 960px) {
