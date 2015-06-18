@@ -65,10 +65,6 @@ blockquote {
   color: #666;
 }
 
-code {
-  font-family: "DejaVuSansMono","Microsoft YaHei","Arial",sans-serif;
-}
-
 @media (max-width: 960px) {
   h1 {
     font-size: 30px;
@@ -321,8 +317,47 @@ article .container {
   }
 }
 
+article h1 {
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 18px;
+  margin-top: 36px;
+  color: #000;
+}
+
+article h2 {
+  font-weight: 600;
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+article h3 {
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+article h4{
+    display: block;
+    font-size: 1.2em;
+    margin: 20px 0;
+    font-weight: 600;
+    color: #CE2323;
+}
+
 article p {
   margin-bottom: 1em;
+}
+
+article code{
+    background-color: #FAEDED;
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin: 0 3px;
+    color: #CE2323;
+    font-family: "consolas",arial,sans-serif;
 }
 
 article li {
@@ -362,3 +397,4 @@ ul.posts .meta {
 ul.posts p {
   margin-bottom: 36px;
 }
+

@@ -20,6 +20,9 @@
   <!-- icons -->
   <link rel="Shortcut Icon" href="/images/star.ico">
   <link rel="Bookmark" href="/images/star.ico">
+  <link rel="stylesheet" href="/css/styles/atelier-lakeside.dark.css">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
   <header style="background-image: url(/images/ubuntu.png);">
@@ -45,14 +48,14 @@
     <ul class="pagination">
       
         <li class="previous">
-          <a href="/jekyll/2015/06/14/first-blog.html">
+          <a href="/jekyll/2015/06/15/first-blog.html">
             Previous
           </a>
         </li>
       
       
       <li class="next">
-        <a href="/php/2015/06/15/php-note.html">
+        <a href="/php/2015/06/16/php-note.html">
           Next
         </a>
       </li>
@@ -68,106 +71,73 @@
 <p>这里假设你已经成功安装了ubuntu，而且已经有了GitHub账号，创建了个人主页用的repository。</p>
 
 <h2>安装ruby-install</h2>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz
 
-<blockquote>
-<p>wget -O ruby-install-0.5.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.5.0.tar.gz</p>
+tar -xzvf ruby-install-0.5.0.tar.gz
 
-<p>tar -xzvf ruby-install-0.5.0.tar.gz</p>
+<span class="nb">cd </span>ruby-install-0.5.0/
 
-<p>cd ruby-install-0.5.0/</p>
-
-<p>sudo make install</p>
-</blockquote>
-
+sudo make install
+</code></pre></div>
 <h2>安装ruby 2.2.2</h2>
-
-<blockquote>
-<p>ruby-install ruby 2.2.2</p>
-</blockquote>
-
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ruby-install ruby 2.2.2
+</code></pre></div>
 <p>因为ruby-install旨在同一台电脑上安装和管理多个不同版本的ruby，所以ruby-install并没有将ruby的路径加入环境变量PATH里。</p>
 
 <p>需要加的童鞋可以自己将<code>~/.rubies/ruby-2.2.2/bin</code>加入PATH。</p>
 
 <h2>配置RubyGems的源</h2>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/.rubies/ruby-2.2.2/bin
 
-<blockquote>
-<p>cd ~/.rubies/ruby-2.2.2/bin</p>
+./gem sources –remove https://rubygems.org/
 
-<p>./gem sources –remove https://rubygems.org/</p>
-
-<p>./gem sources –a http://ruby.taobao.org/</p>
-</blockquote>
-
+./gem sources –a http://ruby.taobao.org/
+</code></pre></div>
 <h2>安装jekyll</h2>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install nodejs
 
-<blockquote>
-<p>sudo apt-get install nodejs</p>
-
-<p>./gems install jekyll</p>
-</blockquote>
-
+./gems install jekyll
+</code></pre></div>
 <h2>安装Git</h2>
-
-<blockquote>
-<p>sudo apt-get install git git-core git-gui git-doc git-svn git-cvs gitweb gitk git-email git-daemon-run git-el git-arch</p>
-</blockquote>
-
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install git git-core git-gui git-doc git-svn git-cvs gitweb gitk git-email git-daemon-run git-el git-arch
+</code></pre></div>
 <h2>配置Git</h2>
 
 <h3>1. 检查ssh可用性</h3>
-
-<blockquote>
-<p>ssh –T git@github.com</p>
-</blockquote>
-
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ssh –T git@github.com
+</code></pre></div>
 <p>如果看到：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">The authenticity of host &#39;github.com (192.30.252.131)&#39; can&#39;t be established.
+RSA key fingerprint is aa:bb:……:yy:zz:.
 
-<blockquote>
-<p>The authenticity of host &#39;github.com (192.30.252.131)&#39; can&#39;t be established.
-RSA key fingerprint is aa:bb:……:yy:zz:.</p>
+Are you sure you want to continue connecting (yes/no)? no
 
-<p>Are you sure you want to continue connecting (yes/no)? no</p>
-
-<p>Host key verification failed.</p>
-</blockquote>
-
+Host key verification failed.
+</code></pre></div>
 <p>则说明可以连接。</p>
 
 <h3>2. 创建本地ssh秘钥</h3>
 
 <p>检查~/.ssh目录下是否有id<em>rsa（私钥）和id</em>rsa.pub（密钥），如果有，则备份出来，删除源文件，再执行如下语句，没有则直接执行：</p>
-
-<blockquote>
-<p>ssh-keygen –t rsa –C “你的GitHub登录用Email地址@gmail.com”</p>
-</blockquote>
-
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ssh-keygen –t rsa –C “你的GitHub登录用Email地址@gmail.com”
+</code></pre></div>
 <h3>3. 登录GitHub设置公钥</h3>
 
 <p>在GitHub中登录你的账号，点击首页右上角”Settings”按钮，选择”SSH keys”→”Add SSH key”，将id_rsa.pub文件中内容复制进key栏中，title自定。</p>
 
 <p>保存之后再次检查ssh连接情况：</p>
-
-<blockquote>
-<p>ssh –T git@github.com</p>
-</blockquote>
-
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ssh –T git@github.com
+</code></pre></div>
 <p>如果看到如下所示，则表示成功：</p>
-
-<blockquote>
-<p>Hi LuckyStar04! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</p>
-</blockquote>
-
+<div class="highlight"><pre><code class="language-text" data-lang="text">Hi LuckyStar04! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div>
 <h3>4. Clone你的GitHub项目</h3>
 
 <p>有以下两种方式clone你的代码到本地：</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git clone git@github.com:alioth310/test.git
 
-<blockquote>
-<p>git clone git@github.com:alioth310/test.git</p>
-
-<p>git clone git://github.com/alioth310/test.git</p>
-</blockquote>
-
+git clone git://github.com/alioth310/test.git
+</code></pre></div>
 <h2>开始享受jekyll吧！</h2>
 
 <p>以下几个网站值得参考：</p>
