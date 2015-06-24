@@ -95,9 +95,100 @@
 </code></pre></div>
 <p><meta>标签为元数据标签。</p>
 
-<h1>未完待续</h1>
+<h1>单引号与双引号</h1>
 
 <hr>
+
+<p>单引号与双引号都是表示字符串的符号。</p>
+
+<p>当字符串中出现双引号时，除了用转义字符<code>\</code>，还可以用单引号中括住双引号表示。反之亦然。</p>
+
+<p>双引号中转义字符、<code>$</code>符号均起作用；单引号中均不起作用，内容直接按原样输出。</p>
+
+<h1>POST与GET</h1>
+
+<hr>
+
+<p>POST与GET都是提交表单的method。区别在于，POST是隐式提交表单，更安全；GET是显式提交表单，所有参数都显示在url中，方便用户添加书签，下次还可以继续打开该网页。</p>
+
+<p>POST和GET都有其特定的用途。常用的是POST。</p>
+
+<h1>常量</h1>
+
+<hr>
+
+<p>一般建议使用大写字母来定义常量。</p>
+
+<p>常量不同于变量，在运行前已经确定。</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">define(&#39;NAME&#39;,value);</span>
+<span class="x">echo &#39;Hello, &#39;.NAME;</span>
+</code></pre></div>
+<h1>$_REQUEST</h1>
+
+<hr>
+
+<p><code>$_REQUEST</code>与<code>$_POST</code>、<code>$_GET</code>等属于特殊的变量类型，称为<strong>超全局</strong><code>(super global)</code>变量。它存储了通过GET或POST方法发送到PHP页面的所有数据，以及在cookie中可访问的数据。</p>
+
+<h1>集合与遍历</h1>
+
+<hr>
+
+<p>采用<code>foreach</code>遍历，与C#有不同之处在于：</p>
+
+<p><code>php</code></p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">foreach($_Arrays as $element) {</span>
+<span class="x">  //do something;</span>
+<span class="x">}</span>
+</code></pre></div>
+<p><code>C#</code></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">foreach</span><span class="o">(</span><span class="n">ElementType</span> <span class="n">e</span> <span class="n">in</span> <span class="n">Arrays</span><span class="o">[])</span>
+<span class="o">{</span>
+  <span class="c1">//do something;</span>
+<span class="o">}</span>
+</code></pre></div>
+<h1>include()与require()</h1>
+
+<p><code>include()</code>与<code>require()</code>在正确工作时完全一样，但是在失败是表现有所不同：</p>
+
+<p>如果<code>include()</code>不工作，就会向浏览器输出警告；</p>
+
+<p>如果<code>require()</code>失败，就会输出一个错误，并中止脚本运行；</p>
+
+<p><code>include_once()</code>和<code>require_once()</code>保证处理的文件只会被包含一次，而不管代码里曾试图包含过多少次。</p>
+
+<h1>sticky form</h1>
+
+<p>黏性表单是一种标准的HTML表单，它能记住你是如何填写它的。</p>
+
+<p>方法是</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;input_text&#39;</span><span class="p">]))</span> <span class="k">echo</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="x">&quot; /&gt;</span>
+<span class="x">&lt;input type=&quot;radio&quot; name=&quot;name&quot; </span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;input_radio&#39;</span><span class="p">]))</span> <span class="k">echo</span> <span class="s1">&#39;checked=&quot;checked&quot; &#39;</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x">/&gt;</span>
+</code></pre></div>
+<h1>MySQL 数据类型</h1>
+
+<table>
+<tr><td><strong>类型</strong></td><td><strong>大小</strong></td><td><strong>描述</strong></td></tr>
+<tr><td>CHAR[length]</td><td>Length字节</td><td>定长字段，0~255个字符</td></tr>
+<tr><td>VARCHAR[length]</td><td>String长度+1或+2</td><td>变长字段，0~65535</td></tr>
+<tr><td>TINYTEXT</td><td>String长度+1</td><td>变长字段，最大255</td></tr>
+<tr><td>TEXT</td><td>String长度+2</td><td>变长字段，最大65535</td></tr>
+<tr><td>MEDIUMTEXT</td><td>String长度+3</td><td>变长字段，最大16777215</td></tr>
+<tr><td>LONGTEXT</td><td>String长度+5</td><td>变长字段，最大4294967295</td></tr>
+<tr><td>TINYINT[length]</td><td>1字节</td><td>范围-128~127，或者0~255</td></tr>
+<tr><td>SMALLINT[length]</td><td>2字节</td><td>-32768~32767，或者0~65535</td></tr>
+<tr><td>MEDIUMINT[length]</td><td>3字节</td><td>-8388608~8388607，或0~16777215</td></tr>
+<tr><td>INT[length]</td><td>4字节</td><td>-2147483648~2147483647，或0~4294967295</td></tr>
+<tr><td>BIGINT[length]</td><td>8字节</td><td>......</td></tr>
+<tr><td>FLOAT[length,decimal]</td><td>4字节</td></tr>
+<tr><td>DOUBLE[len,dec]</td><td>8字节</td></tr>
+<tr><td>DECIMAL[len,dec]</td><td>Length+1或+2</td><td>存储为字符串的DOUBLE，允许固定的小数点</td></tr>
+<tr><td>DATE</td><td>3字节</td><td>采用YYYY-MM-DD格式</td></tr>
+<tr><td>DATETIME</td><td>8字节</td><td>采用YYYY-MM-DD HH:MM:SS格式</td></tr>
+<tr><td>TIMESTAMP</td><td>4字节</td><td>采用YYYYMMDDHHMMSS格式；可接受的范围起始于1970年终止于2038年</td></tr>
+<tr><td>TIME</td><td>3字节</td><td>采用HH:MM:SS格式</td></tr>
+<tr><td>ENUM</td><td>1或2字节</td><td>enumeration的简写。意味着每一列都可以具有多个可能的值之一</td></tr>
+<tr><td>SET</td><td>1、2、3、4或8字节&nbsp;&nbsp;</td><td>与ENUM一样，只不过每一列都可以具有多个可能的值</td></tr>
+</table>
 
   </div>
 </article>
