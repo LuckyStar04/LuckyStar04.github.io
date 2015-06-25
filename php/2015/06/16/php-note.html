@@ -190,6 +190,79 @@
 <tr><td>SET</td><td>1、2、3、4或8字节&nbsp;&nbsp;</td><td>与ENUM一样，只不过每一列都可以具有多个可能的值</td></tr>
 </table>
 
+<h1>第一范式</h1>
+
+<ul>
+<li>每一列必须仅包含一个值（有时候这被描述为<strong>原子性</strong>或<strong>不可分割性</strong>）；</li>
+<li>所有表都不能具有相关数据的重复列。</li>
+</ul>
+
+<h1>第二范式</h1>
+
+<ul>
+<li>必须先符合第一范式</li>
+<li>表的每一个不为键（例如外键）的列必须依赖主键。（即除了外键，其他列的值不能重复；否则最好将该列另外放一张表，再用外键引用）</li>
+</ul>
+
+<h1>第三范式</h1>
+
+<ul>
+<li>必须先符合第二范式</li>
+<li>每个非键列互相之间是独立的。当改变一列时，需要改变另外一列的值，那就是违反了第三范式。（就是要把逻辑上相关的列，进一步抽象独立出来。）</li>
+</ul>
+
+<h1>表的自联结</h1>
+
+<p>SQL可以让表自己联结自己。</p>
+
+<h1>MySQL 分组函数</h1>
+
+<table>
+ <tr>
+  <td>函数</td><td>返回值</td>
+ </tr>
+ <tr>
+  <td>AVG()</td><td>列中所有数值的平均值</td>
+ </tr>
+ <tr>
+  <td>COUNT()</td><td>列中所有值的个数</td>
+ </tr>
+ <tr>
+  <td>GROUP_CONCAT()</td><td>列中所有值的连结</td>
+ </tr>
+ <tr>
+  <td>MAX()</td><td>列中所有数值的最大值</td>
+ </tr>
+ <tr>
+  <td>MIN()</td><td>列中所有值的最小值</td>
+ </tr>
+ <tr>
+  <td>SUM()</td><td>列中所有值的合计值</td>
+ </tr>
+</table>
+
+<h1>高级SELECT（控制流与高级比较函数）</h1>
+
+<h2>GREATEST()与LEAST()</h2>
+
+<p>GREATEST()函数返回多个列中的最大值。</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">GREATEST</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">)</span> <span class="k">FROM</span> <span class="k">table</span>
+</code></pre></div>
+<p>LEAST()函数返回多个列中的最小值。</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">LEAST</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">)</span> <span class="k">FROM</span> <span class="k">table</span>
+</code></pre></div>
+<h2>COALESCE()</h2>
+
+<p>COALESCE()函数返回多个列中的第一个非NULL值。</p>
+
+<h2>IF()</h2>
+
+<p>和Excel中的IF函数很类似。</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">IF</span> <span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">return_if_true</span><span class="p">,</span> <span class="n">return_if_false</span><span class="p">)</span>
+</code></pre></div>
+<h2>CASE()</h2>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">CASE</span> <span class="n">col1</span> <span class="k">WHEN</span> <span class="n">value1</span> <span class="k">THEN</span> <span class="n">return_this</span> <span class="k">ELSE</span> <span class="n">return_that</span> <span class="k">END</span> <span class="k">FROM</span> <span class="k">TABLE</span>
+</code></pre></div>
   </div>
 </article>
 
