@@ -68,17 +68,21 @@
   <div class="container">
     <p>《PHP与MySQL动态网站开发(第4版)》笔记摘抄</p>
 
-<h1>PHP</h1>
+<h1>PHP 概述</h1>
 
 <hr>
 
-<p>PHP的代码运行在服务器端。</p>
+<p><em>page21</em></p>
+
+<p>与 JavaScript不同，PHP的代码运行在服务器端。但它们通常通力协作。</p>
 
 <p>PHP interpreter需要依赖于Apache或者IIS，并在Apache或IIS上做相应的配置工作。</p>
 
 <h1>XHTML 1.0 过渡性文档</h1>
 
 <hr>
+
+<p><em>page22</em></p>
 
 <p>语法：</p>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span>
@@ -99,6 +103,8 @@
 
 <hr>
 
+<p><em>page44</em></p>
+
 <p>单引号与双引号都是表示字符串的符号。</p>
 
 <p>当字符串中出现双引号时，除了用转义字符<code>\</code>，还可以用单引号中括住双引号表示。反之亦然。</p>
@@ -109,13 +115,45 @@
 
 <hr>
 
+<p><em>page54</em></p>
+
 <p>POST与GET都是提交表单的method。区别在于，POST是隐式提交表单，更安全；GET是显式提交表单，所有参数都显示在url中，方便用户添加书签，下次还可以继续打开该网页。</p>
 
 <p>POST和GET都有其特定的用途。常用的是POST。</p>
 
+<p>一个常用的技巧：POST提交的action设置为php文件本身，可以对数据进行check，还可同时将表单设计成sticky form。</p>
+
+<h1>数组</h1>
+
+<hr>
+
+<p><em>page67</em></p>
+
+<p>很类似于HashMap和Dictionary的一种数据结构，不同之处在于，PHP数组还提供了数组下标。</p>
+
+<h1>多维数组</h1>
+
+<hr>
+
+<p><em>page75</em></p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">$a = array(1,2,3,4);</span>
+<span class="x">$b = array(1,3,5,7);</span>
+<span class="x">$c = array(&#39;a&#39; =&gt; $a, &#39;b&#39; =&gt; $b);</span>
+</code></pre></div>
+<h1>数组排序</h1>
+
+<hr>
+
+<p><em>page80</em></p>
+
+<p><code>sort()</code>按值对数组排序，并丢弃原来的键；
+前缀<code>a</code>维持键，<code>r</code>反序，<code>k</code>按键排序。</p>
+
 <h1>常量</h1>
 
 <hr>
+
+<p><em>page42</em></p>
 
 <p>一般建议使用大写字母来定义常量。</p>
 
@@ -127,11 +165,15 @@
 
 <hr>
 
+<p><em>page57</em></p>
+
 <p><code>$_REQUEST</code>与<code>$_POST</code>、<code>$_GET</code>等属于特殊的变量类型，称为<strong>超全局</strong><code>(super global)</code>变量。它存储了通过GET或POST方法发送到PHP页面的所有数据，以及在cookie中可访问的数据。</p>
 
 <h1>集合与遍历</h1>
 
 <hr>
+
+<p><em>page72</em></p>
 
 <p>采用<code>foreach</code>遍历，与C#有不同之处在于：</p>
 
@@ -150,6 +192,8 @@
 
 <hr>
 
+<p><em>page88</em></p>
+
 <p><code>include()</code>与<code>require()</code>在正确工作时完全一样，但是在失败是表现有所不同：</p>
 
 <p>如果<code>include()</code>不工作，就会向浏览器输出警告；</p>
@@ -162,6 +206,8 @@
 
 <hr>
 
+<p><em>page100</em></p>
+
 <p>黏性表单是一种标准的HTML表单，它能记住你是如何填写它的。</p>
 
 <p>方法是</p>
@@ -171,6 +217,8 @@
 <h1>MySQL 数据类型</h1>
 
 <hr>
+
+<p><em>page120</em></p>
 
 <table>
 <tr><td><strong>类型</strong></td><td><strong>大小</strong></td><td><strong>描述</strong></td></tr>
@@ -185,7 +233,7 @@
 <tr><td>MEDIUMINT[length]</td><td>3字节</td><td>-8388608~8388607，或0~16777215</td></tr>
 <tr><td>INT[length]</td><td>4字节</td><td>-2147483648~2147483647，或0~4294967295</td></tr>
 <tr><td>BIGINT[length]</td><td>8字节</td><td>......</td></tr>
-<tr><td>FLOAT[length,decimal]</td><td>4字节</td></tr>
+<tr><td>FLOAT[length,decimal]&nbsp;&nbsp;</td><td>4字节</td></tr>
 <tr><td>DOUBLE[len,dec]</td><td>8字节</td></tr>
 <tr><td>DECIMAL[len,dec]</td><td>Length+1或+2</td><td>存储为字符串的DOUBLE，允许固定的小数点</td></tr>
 <tr><td>DATE</td><td>3字节</td><td>采用YYYY-MM-DD格式</td></tr>
@@ -199,6 +247,8 @@
 <h1>第一范式</h1>
 
 <hr>
+
+<p><em>page173</em></p>
 
 <ul>
 <li>每一列必须仅包含一个值（有时候这被描述为<strong>原子性</strong>或<strong>不可分割性</strong>）；</li>
