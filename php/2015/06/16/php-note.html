@@ -277,11 +277,15 @@
 
 <hr>
 
+<p><em>page208</em></p>
+
 <p>SQL可以让表自己联结自己。</p>
 
 <h1>MySQL 分组函数</h1>
 
 <hr>
+
+<p><em>page211</em></p>
 
 <table>
  <tr>
@@ -311,6 +315,8 @@
 
 <hr>
 
+<p><em>page216</em></p>
+
 <h2>- GREATEST()</h2>
 
 <p>GREATEST()函数返回多个列中的最大值。</p>
@@ -332,6 +338,32 @@
 </code></pre></div>
 <h2>- CASE()</h2>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">CASE</span> <span class="n">col1</span> <span class="k">WHEN</span> <span class="n">value1</span> <span class="k">THEN</span> <span class="n">return_this</span> <span class="k">ELSE</span> <span class="n">return_that</span> <span class="k">END</span> <span class="k">FROM</span> <span class="k">TABLE</span>
+</code></pre></div>
+<h1>执行FULLTEXT查找（全文索引）</h1>
+
+<hr>
+
+<p><em>page220</em></p>
+
+<p>SQL中的<code>like</code>关键字可以做简单的字符串匹配，但是具有极大的局限性。</p>
+
+<p><code>FULLTEXT</code>查找类似于Google等浏览器的查找方式。</p>
+
+<ul>
+<li>创建FULLTEXT索引</li>
+</ul>
+
+<p><code>FULLTEXT</code>索引只能在存储引擎为<code>MyISAM</code>的表创建。</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">&#39;messages&#39;</span>
+</code></pre></div>
+<p>如果messages表不是<code>MyISAM</code>类型，则更改它的存储引擎：</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">messages</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">MyISAM</span><span class="p">;</span>
+</code></pre></div>
+<p>为表中字段添加FULLTEXT索引：</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="err">表名</span> <span class="k">ADD</span> <span class="n">FULLTEXT</span> <span class="p">[</span><span class="err">索引别名</span><span class="p">]</span> <span class="p">(</span><span class="err">列名</span><span class="mi">1</span><span class="p">,</span> <span class="err">列名</span><span class="mi">2</span><span class="p">,</span> <span class="p">...);</span>
+</code></pre></div>
+<p>执行基本的FULLTEXT查找：</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="err">表名</span> <span class="k">WHERE</span> <span class="k">MATCH</span> <span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span> <span class="p">(</span><span class="s1">&#39;匹配字符串&#39;</span><span class="p">)</span>
 </code></pre></div>
   </div>
 </article>
