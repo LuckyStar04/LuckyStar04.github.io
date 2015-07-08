@@ -349,9 +349,7 @@
 
 <p><code>FULLTEXT</code>查找类似于Google等浏览器的查找方式。</p>
 
-<ul>
-<li>创建FULLTEXT索引</li>
-</ul>
+<h2>- 创建FULLTEXT索引</h2>
 
 <p><code>FULLTEXT</code>索引只能在存储引擎为<code>MyISAM</code>的表创建。</p>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">&#39;messages&#39;</span>
@@ -362,9 +360,31 @@
 <p>为表中字段添加FULLTEXT索引：</p>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="err">表名</span> <span class="k">ADD</span> <span class="n">FULLTEXT</span> <span class="p">[</span><span class="err">索引别名</span><span class="p">]</span> <span class="p">(</span><span class="err">列名</span><span class="mi">1</span><span class="p">,</span> <span class="err">列名</span><span class="mi">2</span><span class="p">,</span> <span class="p">...);</span>
 </code></pre></div>
-<p>执行基本的FULLTEXT查找：</p>
+<h2>- 执行基本的FULLTEXT查找</h2>
 <div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="err">表名</span> <span class="k">WHERE</span> <span class="k">MATCH</span> <span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span> <span class="p">(</span><span class="s1">&#39;匹配字符串&#39;</span><span class="p">)</span>
 </code></pre></div>
+<p><code>MATCH ... AGAINST</code>还将返回匹配的相关性，并可以显示在查询结果中：</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span><span class="p">,</span> <span class="k">MATCH</span><span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span> <span class="p">(</span><span class="s1">&#39;匹配字符串&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">R</span>
+<span class="k">FROM</span> <span class="err">表名</span>
+<span class="k">WHERE</span> <span class="k">MATCH</span> <span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span> <span class="p">(</span><span class="s1">&#39;匹配字符串&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h2>- 布尔模式FULLTEXT查找</h2>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="err">表名</span> <span class="k">WHERE</span> <span class="k">MATCH</span><span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;通配字符串&#39;</span> <span class="k">IN</span> <span class="nb">BOOLEAN</span> <span class="k">MODE</span><span class="p">)</span>
+</code></pre></div>
+<p>布尔模式运算符：</p>
+
+<table>
+ <tr><td>运算符</td><td>含义</td></tr>
+  <tr><td>+</td><td>必须存在于每个匹配中</td></tr>
+  <tr><td>-</td><td>绝对不会存在于任何匹配中</td></tr>
+  <tr><td>~</td><td>如果存在,则降低一个等级</td></tr>
+  <tr><td>*</td><td>如果存在,则降低一个等级</td></tr>
+  <tr><td>&lt;</td><td>如果存在,则降低一个等级</td></tr>
+  <tr><td>&gt;</td><td>如果存在,则降低一个等级</td></tr>
+  <tr><td>&quot;&nbsp;&quot;</td><td>如果存在,则降低一个等级</td></tr>
+  <tr><td>()</td><td>如果存在,则降低一个等级</td></tr>
+</table>
+
   </div>
 </article>
 
