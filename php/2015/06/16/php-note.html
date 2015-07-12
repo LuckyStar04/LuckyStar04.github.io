@@ -85,17 +85,17 @@
 <p><em>page22</em></p>
 
 <p>语法：</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span>
-<span class="cp">    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="na">xml:lang=</span><span class="s">&quot;en&quot;</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html: charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Page Title<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="c">&lt;!-- body code here --&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot; lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html: charset=utf-8&quot; /&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- body code here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre></div>
 <p><meta>标签为元数据标签。</p>
 
@@ -136,9 +136,9 @@
 <hr>
 
 <p><em>page75</em></p>
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">$a = array(1,2,3,4);</span>
-<span class="x">$b = array(1,3,5,7);</span>
-<span class="x">$c = array(&#39;a&#39; =&gt; $a, &#39;b&#39; =&gt; $b);</span>
+<div class="highlight"><pre><code class="language-php" data-lang="php">$a = array(1,2,3,4);
+$b = array(1,3,5,7);
+$c = array(&#39;a&#39; =&gt; $a, &#39;b&#39; =&gt; $b);
 </code></pre></div>
 <h1>数组排序</h1>
 
@@ -158,8 +158,8 @@
 <p>一般建议使用大写字母来定义常量。</p>
 
 <p>常量不同于变量，在运行前已经确定。</p>
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">define(&#39;NAME&#39;,value);</span>
-<span class="x">echo &#39;Hello, &#39;.NAME;</span>
+<div class="highlight"><pre><code class="language-php" data-lang="php">define(&#39;NAME&#39;,value);
+echo &#39;Hello, &#39;.NAME;
 </code></pre></div>
 <h1>$_REQUEST</h1>
 
@@ -178,15 +178,15 @@
 <p>采用<code>foreach</code>遍历，与C#有不同之处在于：</p>
 
 <p><code>php</code></p>
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">foreach($_Arrays as $element) {</span>
-<span class="x">  //do something;</span>
-<span class="x">}</span>
+<div class="highlight"><pre><code class="language-php" data-lang="php">foreach($_Arrays as $element) {
+  //do something;
+}
 </code></pre></div>
 <p><code>C#</code></p>
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">foreach</span><span class="o">(</span><span class="n">ElementType</span> <span class="n">e</span> <span class="n">in</span> <span class="n">Arrays</span><span class="o">[])</span>
-<span class="o">{</span>
-  <span class="c1">//do something;</span>
-<span class="o">}</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java">foreach(ElementType e in Arrays[])
+{
+  //do something;
+}
 </code></pre></div>
 <h1>include()与require()</h1>
 
@@ -211,8 +211,8 @@
 <p>黏性表单是一种标准的HTML表单，它能记住你是如何填写它的。</p>
 
 <p>方法是</p>
-<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;</span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;input_text&#39;</span><span class="p">]))</span> <span class="k">echo</span> <span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;distance&#39;</span><span class="p">];</span> <span class="cp">?&gt;</span><span class="x">&quot; /&gt;</span>
-<span class="x">&lt;input type=&quot;radio&quot; name=&quot;name&quot; </span><span class="cp">&lt;?php</span> <span class="k">if</span> <span class="p">(</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$_POST</span><span class="p">[</span><span class="s1">&#39;input_radio&#39;</span><span class="p">]))</span> <span class="k">echo</span> <span class="s1">&#39;checked=&quot;checked&quot; &#39;</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x">/&gt;</span>
+<div class="highlight"><pre><code class="language-php" data-lang="php">&lt;input type=&quot;text&quot; name=&quot;name&quot; value=&quot;&lt;?php if (isset($_POST[&#39;input_text&#39;])) echo $_POST[&#39;distance&#39;]; ?&gt;&quot; /&gt;
+&lt;input type=&quot;radio&quot; name=&quot;name&quot; &lt;?php if (isset($_POST[&#39;input_radio&#39;])) echo &#39;checked=&quot;checked&quot; &#39;; ?&gt;/&gt;
 </code></pre></div>
 <h1>MySQL 数据类型</h1>
 
@@ -320,12 +320,12 @@
 <h2>- GREATEST()</h2>
 
 <p>GREATEST()函数返回多个列中的最大值。</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">GREATEST</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">)</span> <span class="k">FROM</span> <span class="k">table</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">SELECT GREATEST(col1, col2) FROM table
 </code></pre></div>
 <h2>- LEAST()</h2>
 
 <p>LEAST()函数返回多个列中的最小值。</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">LEAST</span><span class="p">(</span><span class="n">col1</span><span class="p">,</span> <span class="n">col2</span><span class="p">)</span> <span class="k">FROM</span> <span class="k">table</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">SELECT LEAST(col1, col2) FROM table
 </code></pre></div>
 <h2>- COALESCE()</h2>
 
@@ -334,10 +334,10 @@
 <h2>- IF()</h2>
 
 <p>和Excel中的IF函数很类似。</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="n">IF</span> <span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">return_if_true</span><span class="p">,</span> <span class="n">return_if_false</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">SELECT IF (condition, return_if_true, return_if_false)
 </code></pre></div>
 <h2>- CASE()</h2>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="k">CASE</span> <span class="n">col1</span> <span class="k">WHEN</span> <span class="n">value1</span> <span class="k">THEN</span> <span class="n">return_this</span> <span class="k">ELSE</span> <span class="n">return_that</span> <span class="k">END</span> <span class="k">FROM</span> <span class="k">TABLE</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">SELECT CASE col1 WHEN value1 THEN return_this ELSE return_that END FROM TABLE
 </code></pre></div>
 <h1>执行FULLTEXT查找（全文索引）</h1>
 
@@ -352,26 +352,26 @@
 <h2>- 创建FULLTEXT索引</h2>
 
 <p><code>FULLTEXT</code>索引只能在存储引擎为<code>MyISAM</code>的表创建。</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SHOW</span> <span class="k">TABLE</span> <span class="n">STATUS</span> <span class="k">LIKE</span> <span class="s1">&#39;messages&#39;</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">SHOW TABLE STATUS LIKE &#39;messages&#39;
 </code></pre></div>
 <p>如果messages表不是<code>MyISAM</code>类型，则更改它的存储引擎：</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">messages</span> <span class="n">ENGINE</span> <span class="o">=</span> <span class="n">MyISAM</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">ALTER TABLE messages ENGINE = MyISAM;
 </code></pre></div>
 <p>为表中字段添加FULLTEXT索引：</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="err">表名</span> <span class="k">ADD</span> <span class="n">FULLTEXT</span> <span class="p">[</span><span class="err">索引别名</span><span class="p">]</span> <span class="p">(</span><span class="err">列名</span><span class="mi">1</span><span class="p">,</span> <span class="err">列名</span><span class="mi">2</span><span class="p">,</span> <span class="p">...);</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">ALTER TABLE 表名 ADD FULLTEXT [索引别名] (列名1, 列名2, ...);
 </code></pre></div>
 <h2>- 执行基本的FULLTEXT查找</h2>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="err">表名</span> <span class="k">WHERE</span> <span class="k">MATCH</span> <span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span> <span class="p">(</span><span class="s1">&#39;匹配字符串&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">SELECT * FROM 表名 WHERE MATCH (列名) AGAINST (&#39;匹配字符串&#39;)
 </code></pre></div>
 <p><code>MATCH ... AGAINST</code>还将返回匹配的相关性，并可以显示在查询结果中：</p>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span><span class="p">,</span> <span class="k">MATCH</span><span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span> <span class="p">(</span><span class="s1">&#39;匹配字符串&#39;</span><span class="p">)</span> <span class="k">AS</span> <span class="n">R</span>
-<span class="k">FROM</span> <span class="err">表名</span>
-<span class="k">WHERE</span> <span class="k">MATCH</span> <span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span> <span class="p">(</span><span class="s1">&#39;匹配字符串&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">SELECT *, MATCH(列名) AGAINST (&#39;匹配字符串&#39;) AS R
+FROM 表名
+WHERE MATCH (列名) AGAINST (&#39;匹配字符串&#39;)
 </code></pre></div>
 <h2>- 布尔模式FULLTEXT查找</h2>
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="err">表名</span> <span class="k">WHERE</span> <span class="k">MATCH</span><span class="p">(</span><span class="err">列名</span><span class="p">)</span> <span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;通配字符串&#39;</span> <span class="k">IN</span> <span class="nb">BOOLEAN</span> <span class="k">MODE</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">SELECT * FROM 表名 WHERE MATCH(列名) AGAINST(&#39;通配字符串&#39; IN BOOLEAN MODE)
 </code></pre></div>
-<p>布尔模式运算符：</p>
+<p><strong>布尔模式运算符：</strong></p>
 
 <table>
  <tr><td>运算符&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>含义</td></tr>
@@ -384,6 +384,32 @@
   <tr><td>&quot;&nbsp;&quot;</td><td>必须匹配精确的短语</td></tr>
   <tr><td>()</td><td>创建子表达式</td></tr>
 </table>
+
+<h2>- 查询优化</h2>
+
+<p>提高MySQL性能的方法之一是，不时地运行<code>OPTIMIZE</code>命令，这个查询将去掉表中任何不必要的开销，从而提高交互的速度：</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">OPTIMIZE TABLE 表名
+</code></pre></div>
+<p>其次，可以偶尔使用<code>ANALYZE</code>命令：</p>
+<div class="highlight"><pre><code class="language-sql" data-lang="sql">ANALYZE TABLE 表名
+</code></pre></div>
+<h2>- EXPLAIN查询</h2>
+
+<p>在<code>SELECT</code>前加上<code>EXPLAIN</code>字段，即可解释本次查询。</p>
+
+<h1>数据库事务（Transaction）</h1>
+
+<hr>
+
+<p><em>page231</em></p>
+
+<p>Transaction 由 <code>Start transaction</code>开始事务，<code>Commit</code>完成事务，<code>Rollback</code>回滚事务。</p>
+
+<p>用于创建、改变、截短（清空）、删表或者用于创建/删除数据库的SQL语句不能被撤销，即不能回滚。</p>
+
+<p>Transaction基于连接，每个连接的事务都是不同的，不能相互提交或回滚对方的事务。</p>
+
+<h1>数据库加密</h1>
 
   </div>
 </article>

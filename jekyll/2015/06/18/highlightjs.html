@@ -54,6 +54,12 @@
         </li>
       
       
+      <li class="next">
+        <a href="/powerbuilder/2015/07/13/powerbuilder.html">
+          Next
+        </a>
+      </li>
+      
     </ul>
   </div>
 </header>
@@ -77,9 +83,9 @@
 <hr>
 
 <p>把<code>styles</code>文件夹和<code>highlight.pack.js</code>文件放在你的网站里，在你的<code>_layouts</code>中的html文件加入代码</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/path/to/styles/default.css&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;/path/to/highlight.pack.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script&gt;</span>hljs.initHighlightingOnLoad();<span class="nt">&lt;/script&gt;</span>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">&lt;link rel=&quot;stylesheet&quot; href=&quot;/path/to/styles/default.css&quot;&gt;
+&lt;script src=&quot;/path/to/highlight.pack.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
 </code></pre></div>
 <p>其中<code>/path/to/</code>替换成你的路径，<code>default.css</code>替换成你想要的风格。</p>
 
@@ -103,17 +109,17 @@
 ```
 </code></pre></div>
 <p>效果如下</p>
-<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span>
-<span class="cp">    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;</span>
-<span class="nt">&lt;html</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.w3.org/1999/xhtml&quot;</span> <span class="na">xml:lang=</span><span class="s">&quot;en&quot;</span> <span class="na">lang=</span><span class="s">&quot;en&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;head&gt;</span>
-    <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;Content-Type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html: charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Page Title<span class="nt">&lt;/title&gt;</span>
-<span class="nt">&lt;/head&gt;</span>
-<span class="nt">&lt;body&gt;</span>
-    <span class="c">&lt;!-- body code here --&gt;</span>
-<span class="nt">&lt;/body&gt;</span>
-<span class="nt">&lt;/html&gt;</span>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;
+    &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot; lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html: charset=utf-8&quot; /&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- body code here --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 </code></pre></div>
 <p>调用js函数<code>hljs.listLanguages()</code>，可以查询到所有当前highlight.js支持高亮的语言名称。</p>
 

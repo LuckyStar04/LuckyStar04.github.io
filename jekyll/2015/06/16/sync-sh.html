@@ -81,12 +81,12 @@
 
 <p>然后新建sync.sh文件，chmod改为755，输入以下脚本：</p>
 <div class="highlight"><pre><code class="language-bash" data-lang="bash">jekyll build
-<span class="nb">echo</span> <span class="s2">&quot;输入本次修改的tag：&quot;</span>
-<span class="nb">read </span>tag
+echo &quot;输入本次修改的tag：&quot;
+read tag
 cp -rf ./_site/* ./luckystar04.github.com/
-<span class="nb">cd </span>luckystar04.github.com
+cd luckystar04.github.com
 git add .
-git commit -a -m <span class="s2">&quot;${tag}&quot;</span>
+git commit -a -m &quot;${tag}&quot;
 git push upstream
 </code></pre></div>
 <p>运行查看效果。</p>
