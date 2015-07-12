@@ -25,7 +25,7 @@
   <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
-  <header style="background-image: url(/images/galaxy.jpg);">
+  <header style="background-image: url(/images/Galaxy.png);">
   <div class="container post-container">
     <a href="/" class="home_button"></a>
     <div class="inner-container">
@@ -67,36 +67,20 @@
 <hr>
 
 <ul>
-<li>PowerScript</li>
+<li><p><strong>PowerScript</strong> - PowerBuilder的开发语言。</p></li>
+<li><p><strong>EAServer</strong> - Sybase的企业应用服务器（Enterprise Application Server）。一种中间层事务服务器。</p></li>
 </ul>
-
-<p>PowerBuilder的开发语言。</p>
-
-<ul>
-<li>EAServer</li>
-</ul>
-
-<p>Sybase的企业应用服务器（Enterprise Application Server）。一种中间层事务服务器。</p>
 
 <h1>语言基础</h1>
 
 <hr>
 
-<h2>断行/续行符</h2>
-
-<p><code>&amp;</code></p>
-
-<h2>注释符</h2>
-
-<p><code>//</code> 或者 <code>/*  */</code></p>
-
-<h2>转义字符</h2>
-
-<p>用<code>~</code>表示转义字符。</p>
-
-<h2>空值</h2>
-
-<p><code>NULL</code>表示空值。</p>
+<ul>
+<li><p><strong>断行/续行符</strong> - <code>&amp;</code></p></li>
+<li><p><strong>注释符</strong> - <code>//</code> 或者 <code>/*  */</code></p></li>
+<li><p><strong>转义字符</strong> - 用<code>~</code>表示转义字符。</p></li>
+<li><p><strong>空值</strong> - <code>NULL</code>表示空值。</p></li>
+</ul>
 
 <p>PowerBuilder并不将空值作为缺省值。</p>
 
@@ -112,33 +96,24 @@ SetNull(person) //person is NULL
 
 <hr>
 
-<h2>This</h2>
-
-<p>代表窗体、菜单、控件、用户对象或应用对象本身。</p>
-
-<h2>Parent</h2>
-
-<p>指当前控件所在的窗口。</p>
-
-<h2>ParentWindow</h2>
-
-<p>代表运行时菜单所在的窗口。只能在菜单的事件处理程序中使用。</p>
-
-<h2>Super</h2>
-
-<p>代表父类。调用示例：<code>Super::f_func()</code></p>
+<ul>
+<li><p><strong>This</strong> - 代表窗体、菜单、控件、用户对象或应用对象本身。</p></li>
+<li><p><strong>Parent</strong> - 指当前控件所在的窗口。</p></li>
+<li><p><strong>ParentWindow</strong> - 代表运行时菜单所在的窗口。只能在菜单的事件处理程序中使用。</p></li>
+<li><p><strong>Super</strong> - 代表父类。调用示例：<code>Super::f_func()</code></p></li>
+</ul>
 
 <h2>访问对象的成员</h2>
 
 <hr>
 
 <p>PowerScript访问对象的函数与事件的格式为：</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">{ objectname. } { type } { calltype } { when } functionname ({ argumentlist })
+<div class="highlight"><pre><code class="language-text" data-lang="text">   { objectname. } { type } { calltype } { when } functionname ({ argumentlist })
 </code></pre></div>
 <ul>
-<li><p>objectname 对象名；</p></li>
-<li><p>type：<code>FUNCTION</code>或<code>EVENT</code>，用于指明访问函数还是事件，缺省值为<code>FUNCTION</code></p></li>
-<li><p>calltype 指明PowerBuilder查找函数的时机：</p></li>
+<li><p><strong>objectname</strong> - 对象名；</p></li>
+<li><p><strong>type</strong> - <code>FUNCTION</code>或<code>EVENT</code>，用于指明访问函数还是事件，缺省值为<code>FUNCTION</code></p></li>
+<li><p><strong>calltype</strong> - 指明PowerBuilder查找函数的时机：</p></li>
 </ul>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>STATIC</code>：编译时查找函数，若不在，产生编译错误</p>
@@ -146,7 +121,7 @@ SetNull(person) //person is NULL
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>DYNAMIC</code>：程序运行时查找函数，若不在，产生运行错误</p>
 
 <ul>
-<li>when：用于指明函数或事件是立即执行呢还是当前程序段执行完毕后执行</li>
+<li><strong>when</strong> - 用于指明函数或事件是立即执行呢还是当前程序段执行完毕后执行</li>
 </ul>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>TRIGGER(default)</code>立即执行</p>
@@ -154,8 +129,8 @@ SetNull(person) //person is NULL
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>POST</code>当前程序段执行完毕后执行</p>
 
 <ul>
-<li><p>functionname 指明调用的函数或事件名称；</p></li>
-<li><p>argumentlist 给出函数或事件的参数。</p></li>
+<li><p><strong>functionname</strong> - 指明调用的函数或事件名称；</p></li>
+<li><p><strong>argumentlist</strong> - 给出函数或事件的参数。</p></li>
 </ul>
 
 <h1>数据类型</h1>
@@ -165,13 +140,13 @@ SetNull(person) //person is NULL
 <h2>标准数据类型</h2>
 
 <table>
-  <tr><td><em>数据类型</em></td><td><em>意义</em></td><td><em>示例</em></td></tr>
+  <tr><td><strong>数据类型</strong></td><td><strong>意义</strong></td><td><strong>示例</strong></td></tr>
   <tr><td>Blob</td><td>二进制大对象，用于存储大量数据，例如图像、大文本等&nbsp;&nbsp;&nbsp;</td><td></td></tr>
   <tr><td>Boolean</td><td>布尔型</td><td>TRUE or FALSE</td></tr>
   <tr><td>Char</td><td>单个ASCII字符</td><td>'A' or "A"</td></tr>
-  <tr><td>Date</td><td>日期</td><td></td>2015-07-12</tr>
+  <tr><td>Date</td><td>日期</td><td>2015-07-12</td></tr>
   <tr><td>Time</td><td>24小时制时间</td><td>23:59:59:999999</td></tr>
-  <tr><td>DateTime</td><td>日期时间，仅用于访问数据库</td><td>Date(datetime) Time(datetime)</td></tr>
+  <tr><td>DateTime</td><td>日期时间，仅用于访问数据库</td><td>Date(datetime)，Time(datetime)</td></tr>
   <tr><td>Decimal或Dec&nbsp;&nbsp;</td><td>带符号十进制数，最大18位精度</td><td>8754625.8635</td></tr>
   <tr><td>Double</td><td>带符号浮点数，15位精度</td><td></td></tr>
   <tr><td>Real</td><td>带符号浮点数，6位精度</td><td></td></tr>

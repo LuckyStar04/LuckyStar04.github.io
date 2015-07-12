@@ -405,3 +405,6 @@ ul.posts p {
   margin-bottom: 36px;
 }
 
+strong {
+  font-weight: 600;
+}
