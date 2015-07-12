@@ -184,6 +184,45 @@ SetNull(person) //person is NULL
 <li>Right!</li>
 </ul>
 
+<h1>变量说明语句</h1>
+
+<hr>
+
+<h2>Blob</h2>
+
+<p>Blob声明时可以声明长度；不声明则默认为0，系统会根据实际数据自动调整长度。</p>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">blob {100} ib_Emp_Picture
+blob ib_Picture
+</code></pre></div>
+<p>Blob变量不能设置初值。</p>
+
+<h2>Decimal(Dec)</h2>
+
+<p>Decimal声明时可以声明精度。</p>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">dec{4} dec_4
+</code></pre></div>
+<h2>数组</h2>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">int person[30]
+real lr_array[10, 10]    //二维数组
+int Num[3 to 10]         //
+real lr_Array5[5] = {1.2, 2.1, 5.6, 4.8, 6.9}
+</code></pre></div>
+<h2>常量</h2>
+
+<p>常量声明使用<code>CONSTANT</code>关键字。</p>
+
+<p>CONSTANT 数据类型 常量名 = 常量值</p>
+
+<h1>外部函数</h1>
+
+<hr>
+
+<p>PowerScript支持调用其他语言编写的动态连接库(DLL of Windows)或共享库(UNIX/Mac)。</p>
+
+<p>调用之前，必须要声明。</p>
+
+<p>应用程序中可以声明两类外部函数：</p>
+
   </div>
 </article>
 
