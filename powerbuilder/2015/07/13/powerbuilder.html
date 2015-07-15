@@ -213,15 +213,65 @@ real lr_Array5[5] = {1.2, 2.1, 5.6, 4.8, 6.9}
 
 <p>CONSTANT 数据类型 常量名 = 常量值</p>
 
-<h1>外部函数</h1>
+<h1>调用外部函数</h1>
 
 <hr>
 
-<p>PowerScript支持调用其他语言编写的动态连接库(DLL of Windows)或共享库(UNIX/Mac)。</p>
+<p>PowerScript支持调用其他语言编写的动态连接库(DLL in Windows)或共享库(UNIX/Mac)。</p>
 
 <p>调用之前，必须要声明。</p>
 
-<p>应用程序中可以声明两类外部函数：</p>
+<p>应用程序中以函数声明处区分，分为两类外部函数：</p>
+
+<ul>
+<li><p><strong>全局外部函数</strong>，可以在应用程序的任何地方调用；</p></li>
+<li><p><strong>局部外部函数</strong>，在对象或用户自定义函数中说明，只能在对象的事件处理函数中调用。</p></li>
+</ul>
+
+<p>外部函数按照有无返回值，分为两类：有返回值的是<strong>函数</strong>，没有返回值的是<strong>过程</strong>。</p>
+
+<p><strong>函数</strong>与<strong>过程</strong>的声明语句略有不同，</p>
+
+<p>函数：</p>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">{Public/Private/Protected} FUNCTION 返回值类型 函数名 ({REF} 类型1 arg1, {REF}类型2 arg2, ..., ) LIBRARY &quot;libname&quot; ALIAS FOR &quot;extname&quot;
+</code></pre></div>
+<p>过程：<code>Function</code> 替换为 <code>Subroutine</code>。</p>
+
+<h1>调用数据库的存储过程</h1>
+
+<hr>
+
+<p>PowerScript调用数据库的存储过程时，存储过程作为事务对象的对象函数来使用。将上例的<code>LIBRARY</code>替换为<code>RPCFUNC</code>即可声明存储过程。<code>事务对象名.存储过程名()</code>即可完成调用。</p>
+
+<h1>数据声明</h1>
+
+<hr>
+
+<p>结构，在画笔打开对象，单击“Insert”→“Structure”</p>
+
+<p>变量，在画笔中，单击“Declare”→“XXX Variables...”</p>
+
+<p>共享变量（<code>Shared Variables</code>）即是静态变量。</p>
+
+<h1>算术运算符</h1>
+
+<hr>
+
+<h2>注意</h2>
+
+<p>如果<code>PB.INI</code>文件的<code>[pb]</code>节中，<code>DashesInIdentifiers</code>选项等于1（这是PowerBuilder的缺省设置），在使用减号、负号、自减1运算符时，必须在运算符两边都加上空格，否则将产生编译错误。</p>
+
+<p>原因在于当<code>DashedInIdentifiers=1</code>时，减号可以作为标识符的部分来使用。</p>
+
+<h1>面向对象</h1>
+
+<hr>
+
+<p>PowerBuilder从 8 开始，支持gc。虽然有gc，但依然应该主动释放不再使用的对象。</p>
+
+<h2>创建对象</h2>
+
+<p><strong>CREATE</strong>关键字用来创建对象（类似于Java的new）</p>
 
   </div>
 </article>
