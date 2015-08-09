@@ -71,7 +71,7 @@
 <li><p><strong>EAServer</strong> - Sybase的企业应用服务器（Enterprise Application Server）。一种中间层事务服务器。</p></li>
 </ul>
 
-<h1>语言基础</h1>
+<h1>第1章 PowerScript语言基础</h1>
 
 <hr>
 
@@ -141,13 +141,13 @@ SetNull(person) //person is NULL
 
 <table>
   <tr><td><strong>数据类型</strong></td><td><strong>意义</strong></td><td><strong>示例</strong></td></tr>
-  <tr><td>Blob</td><td>二进制大对象，用于存储大量数据，例如图像、大文本等&nbsp;&nbsp;&nbsp;</td><td></td></tr>
+  <tr><td>Blob</td><td>二进制大对象，用于存储大量数据，例如图像、大文本等</td><td></td></tr>
   <tr><td>Boolean</td><td>布尔型</td><td>TRUE or FALSE</td></tr>
   <tr><td>Char</td><td>单个ASCII字符</td><td>'A' or "A"</td></tr>
   <tr><td>Date</td><td>日期</td><td>2015-07-12</td></tr>
   <tr><td>Time</td><td>24小时制时间</td><td>23:59:59:999999</td></tr>
   <tr><td>DateTime</td><td>日期时间，仅用于访问数据库</td><td>Date(datetime)，Time(datetime)</td></tr>
-  <tr><td>Decimal或Dec&nbsp;&nbsp;</td><td>带符号十进制数，最大18位精度</td><td>8754625.8635</td></tr>
+  <tr><td>Decimal或Dec</td><td>带符号十进制数，最大18位精度</td><td>8754625.8635</td></tr>
   <tr><td>Double</td><td>带符号浮点数，15位精度</td><td></td></tr>
   <tr><td>Real</td><td>带符号浮点数，6位精度</td><td></td></tr>
   <tr><td>Int</td><td>16位带符号整数，-32768到32767</td><td></td></tr>
@@ -271,7 +271,399 @@ real lr_Array5[5] = {1.2, 2.1, 5.6, 4.8, 6.9}
 
 <h2>创建对象</h2>
 
-<p><strong>CREATE</strong>关键字用来创建对象（类似于Java的new）</p>
+<p><strong>CREATE</strong>关键字用来创建对象</p>
+
+<p>语法一，类似于<strong>Java</strong>中的<strong>new</strong>关键字</p>
+
+<p><code>实例名 = CREATE 对象数据类型名</code></p>
+
+<p>语法二，类似于<strong>多态</strong>，可以实现在应用程序中动态选择对象类型</p>
+
+<p><code>实例名 = CREATE USING 类名的字符串</code></p>
+
+<h2>释放实例</h2>
+
+<p><code>DESTROY 实例名</code></p>
+
+<h2>手动GC（尼玛第一次见！GC居然还可以手动的！）</h2>
+
+<ul>
+<li><strong>GarbageCollect()</strong>——该函数立即执行gc</li>
+<li><strong>GarbageCollecSetTimeLimit()</strong>——该函数让开发人员设置两次废弃对象收集过程之间的最小时间间隔</li>
+<li><strong>GarbageCollecGetTimeLimit()</strong>——获取最小时间间隔</li>
+</ul>
+
+<p>由于gc不太好用，所以PB中依然推荐手工<code>DESTROY</code>。</p>
+
+<h1>条件语句</h1>
+
+<hr>
+
+<h2>IF</h2>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">IF condition1 THEN
+    action1
+ELSEIF condition2 THEN
+    action2
+ELSE
+    action3
+END IF
+</code></pre></div>
+<h2>CHOOSE CASE （类似于switch）</h2>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">CHOOSE CASE testexpression
+    CASE condition1
+        action1
+    CASE condition2
+        action2
+    ...
+    CASE ELSE
+        actionN
+END CHOOSE
+</code></pre></div>
+<p><code>CHOOSE</code>表达式中可以使用以下形式</p>
+
+<ul>
+<li><p>用逗号分隔的一组数据，例如 2,4,7</p></li>
+<li><p>用<code>TO</code>表示的一个区间范围，例如2 TO 15</p></li>
+<li><p>用<code>IS</code>表示testexpression</p></li>
+</ul>
+
+<h1>循环语句</h1>
+
+<hr>
+
+<h2>DO...LOOP循环</h2>
+
+<p>分四种形式：</p>
+
+<ul>
+<li><p>DO UNTIL condition ... LOOP</p></li>
+<li><p>DO WHILE condition ... LOOP</p></li>
+<li><p>DO ... LOOP UNTIL condition</p></li>
+<li><p>DO ... LOOP WHILE condition</p></li>
+</ul>
+
+<h2>FOR...NEXT循环</h2>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">FOR var = start TO end [STEP x]
+    action
+NEXT
+</code></pre></div>
+<h2>GOTO任意跳转语句</h2>
+
+<h2>EXIT中途退出所有循环</h2>
+
+<h2>CONTINUE退出本次循环继续下一次</h2>
+
+<h1>返回语句与终止程序运行</h1>
+
+<hr>
+
+<h2>RETURN返回调用程序，并返回值</h2>
+
+<h2>HALT终止程序运行。</h2>
+
+<p><code>HALT [CLOSE]</code> 其中CLOSE是可选项，当HALT带CLOSE时，应用程序先执行应用对象的Close事件。</p>
+
+<h2>CALL语句</h2>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">CALL 父对象`控件名::事件名称(参数列表)
+</code></pre></div>
+<h1>嵌入式SQL语句</h1>
+
+<hr>
+
+<p>PowerBuilder 8 支持在程序中直接嵌入SQL语句。SQL语句以<strong>分号(;)</strong>结尾，使用PB变量时，变量以<strong>冒号(:)</strong>开头。</p>
+
+<h2>建立与断开数据库</h2>
+
+<ul>
+<li>CONNECT</li>
+</ul>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">CONNECT {USING TransactionObject};
+</code></pre></div>
+<p>其中<code>TransactionObject</code>是<strong>事务对象</strong>（不是SQL的事务），在执行该语句前，必须正确设置事务对象的数据库连接属性。</p>
+
+<ul>
+<li>DISCONNECT</li>
+</ul>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">CONNECT {USING TransactionObject};
+</code></pre></div>
+<h2>提交与回滚事务</h2>
+
+<p>使用<code>COMMIT</code>和<code>ROLLBACK</code>语句控制事务操作。<strong>事务</strong>和<strong>事物对象</strong>是两个完全不同的概念。</p>
+
+<ul>
+<li>COMMIT</li>
+</ul>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">COMMIT {USING TransactionObject};
+</code></pre></div>
+<p>其中，<code>TransactionObject</code>是自上次执行COMMIT、ROLLBACK或CONNECT操作后需要永久更新数据库操作的事务对象名，缺省值为<code>SQLCA</code>。</p>
+
+<ul>
+<li>ROLLBACK</li>
+</ul>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">ROLLACK {USING TransactionObject};
+</code></pre></div>
+<p>同上。</p>
+
+<ul>
+<li>CommitOnDisconnect</li>
+</ul>
+
+<p>是PowerBuilder 8 新引进的DBParm参数，</p>
+
+<p>当设置为<code>Yes</code>的时候，执行<code>DISCONNECT</code>语句时，将首先执行一条<code>COMMIT</code>；</p>
+
+<p>当设置为<code>No</code>的时候，执行<code>DISCONNECT</code>语句时，将首先执行一条<code>ROLLBACK</code>；</p>
+
+<h2>SELECT查询单行数据</h2>
+
+<p>语法：</p>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">SELECT 字段名 INTO 变量列表（记得加冒号） FROM 数据库表名
+Where 查询条件
+{USING TransactionObject};
+</code></pre></div>
+<h2>INSERT插入</h2>
+
+<h2>DELETE删除</h2>
+
+<h2>UPDATE 修改</h2>
+
+<h1>检查SQL语句执行情况</h1>
+
+<hr>
+
+<p>每当执行一条 SQL 语句后 与该语句相关的<strong>事务对象</strong>的<code>SQLCode</code>属性都给出一个值指示 SQL 语句的执行是否成功，<code>SQLCode</code>取值为</p>
+
+<ul>
+<li><p>0   ── 最近一次 SQL 语句执行成功</p></li>
+<li><p>-1  ── 最近一次 SQL 语句执行失败</p></li>
+<li><p>100 ── 最近一次 SQL 语句没有返回数据</p></li>
+</ul>
+
+<p>当<code>SQLCode</code>取值<code>-1</code>时，事务对象<code>SQLErrText</code>属性中存放这数据库厂商提供的错误信息，利用这两个属性，可以得到出错原因。</p>
+
+<h1>读取多行数据</h1>
+
+<hr>
+
+<p>当需要读取多条记录时，就需要使用游标<code>CURSOR</code>进行操作。</p>
+
+<ol>
+<li>使用<code>DECLARE</code>语句声明游标</li>
+</ol>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">DECLARE 游标名 CURSOR FOR Select语句
+    {USING TransactionObject};
+</code></pre></div>
+<ol>
+<li>用<code>OPEN</code>语句打开游标</li>
+</ol>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">OPEN 游标名;
+</code></pre></div>
+<ol>
+<li>使用<code>FETCH</code>语句读取一行数据</li>
+</ol>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">FETCH 游标名 INTO :变量1, :变量2；
+</code></pre></div>
+<ol>
+<li><p>处理数据</p></li>
+<li><p>判断是否已经读完所有数据，未读完时，重复3~5步</p></li>
+<li><p>使用<code>CLOSE</code>语句关闭游标</p></li>
+</ol>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">CLOSE 游标名;
+</code></pre></div>
+<h2>使用数据库的存储过程</h2>
+
+<p>使用数据库的存储过程查询数据，与<code>CURSOR</code>十分类似，先<code>DECLARE</code>再<code>EXECUTE</code>再<code>FETCH</code>最后<code>CLOSE</code>。</p>
+
+<p>打开游标或存储过程之后，如果使用<code>COMMIT</code>或<code>ROLLBACK</code>，将关闭游标或存储过程。</p>
+
+<h1>动态SQL</h1>
+
+<hr>
+
+<p>动态SQL四种类型</p>
+
+<ol>
+<li>既无输入参数也无结果</li>
+</ol>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">EXECUTE IMMEDIATE SQLStatement
+    {USING TransactionObject};
+</code></pre></div>
+<ol>
+<li>有输入参数，但无结果</li>
+</ol>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">PREPARE DynamicStagingArea FROM SQLStatement {USING TransactionObject};
+EXECUTE DynamicStagingArea {USING TransactionObject};
+</code></pre></div>
+<p><code>DynamicStagingArea</code>是个动态策略区变量，通常使用<code>SQLSA</code>。</p>
+
+<ol>
+<li>编译时已经知道参数和结果集的列</li>
+</ol>
+
+<p>通常使用游标或者存储过程。</p>
+
+<ol>
+<li>开发程序时尚不知道参数和结果集</li>
+</ol>
+
+<h1>SELECTBLOB语句</h1>
+
+<hr>
+
+<p><code>SELECTBLOB</code>语句从数据库中检索一行大二进制对象(<code>binary large object</code>)数据。</p>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">SELECTBLOB RestOfSelectStatement {USING TransactionObject};
+</code></pre></div>
+<h1>例外处理语句</h1>
+
+<hr>
+<div class="highlight"><pre><code class="language-vbscript" data-lang="vbscript">TRY...CATCH...FINALLY...END TRY
+</code></pre></div>
+<h1>第2章 系统函数</h1>
+
+<hr>
+
+<p>系统函数不隶属于任何对象，是PowerBuilder提供的内部函数，不用声明即可使用。</p>
+
+<h2>数组函数</h2>
+
+<table>
+<tr><td><strong>分类</strong></td><td><strong>函数名称</strong></td><td><strong>返回值</strong></td><td><strong>函数功能</strong></td></tr>
+<tr><td rowspan="2">数组函数</td><td>LowerBound(数组名{,n})</td><td>Long</td><td>得到指定数组第n维的下界。</td></tr>
+<tr><td>UpperBound(数组名{,n})</td><td>Long</td><td>得到数组第n维的上界。</td></tr>
+</table>
+
+<h2>Blob函数</h2>
+
+<table>
+<tr><td><strong>分类</strong></td><td><strong>函数名称</strong></td><td><strong>返回值</strong></td><td><strong>函数功能</strong></td></tr>
+<tr><td rowspan="5">Blob函数</td><td>Blob(text)</td><td>Blob</td><td>将字符串转换成Blob类型</td></tr>
+<tr><td>BlobEdit(blob,n,data)</td><td>ulong</td><td>将任意类型的数据插入到Blob变量的指定位置</td></tr>
+<tr><td>BlobMid(data,n,{,length})</td><td>blob</td><td>提取blob中的一段</td></tr>
+<tr><td>Len(blob)</td><td>long</td><td>得到Blob变量的长度，单位字节</td></tr>
+<tr><td>String(blob)</td><td>String</td><td>将Blob转换为字符串类型。</td></tr>
+</table>
+
+<h2>数据检查与转换</h2>
+
+<h2>日期时间函数</h2>
+
+<h2>DDE操作函数</h2>
+
+<table>
+<tr><td><strong>分类</strong></td><td><strong>函数名称</strong></td><td><strong>返回值</strong></td><td><strong>函数功能</strong></td></tr>
+<tr><td rowspan="2">DDE客户函数</td><td>CloseChannel(句柄{,窗体句柄})</td><td>Integer</td><td>关闭先前用OpenChannel()函数打开的DDE服务器通道</td></tr>
+<tr><td>ExecRemote(command)</td><td>...</td><td>...</td></tr>
+</table>
+
+<h2>DDE服务器函数</h2>
+
+<h2>文件操作函数</h2>
+
+<table>
+<tr><td><strong>函数名称</strong></td><td><strong>返回值</strong></td><td><strong>函数功能</strong></td></tr>
+<tr><td>FileClose(文件号)</td><td>Integer</td><td>关闭文件</td></tr>
+<tr><td>FileDelete(文件名)</td><td>Boolean</td><td>删除文件</td></tr>
+<tr><td>FileExists(文件名)</td><td>Boolean</td><td>检查文件是否存在</td></tr>
+<tr><td>FileLength(文件名)</td><td>Long</td><td>得到特定文件的长度</td></tr>
+<tr><td>FileOpen(文件名,..)</td><td>Long</td><td>打开文件</td></tr>
+<tr><td>FileRead(文件号,变量)</td><td>Integer</td><td>从指定文件读取数据</td></tr>
+<tr><td>FileSeek(文件号,位置,origin)</td><td>Long</td><td>从文件指针移动到指定位置</td></tr>
+<tr><td>FileWrite(文件号,变量)</td><td>Integer</td><td>写文件</td></tr>
+<tr><td>GetFileOpenName(标题,路径,文件名{,扩展名,filter})</td><td>Integer</td><td>显示打开文件对话框</td></tr>
+<tr><td>GetFileSaveName(标题,路径,文件名{,扩展名,filter})</td><td>Integer</td><td>显示保存文件对话框</td></tr>
+<tr><td>FileCopy(源路径,目标{,IsReplace})</td><td>Integer</td><td>复制文件</td></tr>
+<tr><td>FileMove(源路径,目标)</td><td>Integer</td><td>移动文件</td></tr>
+<tr><td>ChangeDirectory(目录名)</td><td>Integer</td><td>改变当前目录</td></tr>
+<tr><td>CreateDirectory(目录名)</td><td>Integer</td><td>创建一个目录</td></tr>
+<tr><td>DirectoryExists(目录名)</td><td>Boolean</td><td>判断目录是否存在</td></tr>
+<tr><td>GetCurrentDirectory()</td><td>String</td><td>得到当前目录</td></tr>
+<tr><td>RemoveDirectory(目录名)</td><td>Integer</td><td>删除指定目录</td></tr>
+</table>
+
+<h3>FileOpen()</h3>
+
+<p>参数：</p>
+
+<ul>
+<li>filename:   文件名</li>
+<li>filemode:   枚举，可选<code>LineMode!</code>行模式（默认），<code>StreamMode!</code>流模式</li>
+<li>fileaccess: 枚举，可选<code>Read!</code>只读（默认），<code>Write!</code>只写</li>
+<li>filelock:   枚举，可选<code>LockReadWrite!</code>读写排他（默认），<code>LockRead!</code>读排他，<code>LockWrite!</code>写排他，<code>Shared!</code>共享</li>
+<li>writemode:  枚举，当fileaccess为<code>Write!</code>时，可指定当文件存在时数据的添加方式。</li>
+</ul>
+
+<p>可选<code>Append!</code>将数据附到源文件尾部（默认），<code>Replace!</code>覆盖原有数据。</p>
+
+<ul>
+<li>creator:    用于Mac机，用4个字符指定文件创建者</li>
+<li>filetype:   用于Mac机，用4个字符指定文件类型</li>
+</ul>
+
+<h1>打印与打印机设置函数</h1>
+
+<hr>
+
+<p>打印函数用于在打印机上格式化输出数据。这组函数与各对象的Print()函数有所不同，
+程序在使用这组函数时，需要使用PrintOpen()函数打开一个打印作业，然后根据需要执行
+这组函数中的一个或多个函数，最后使用PrintClose()函数关闭打印作业。</p>
+
+<p>打印机设置函数用于得到当前的打印机名称、设置应用程序使用的打印机、得到系统
+中包含的所有打印机、显示打印机设置对话框等。</p>
+
+<p><strong>PB8.0中文参考手册.pdf page 133</strong></p>
+
+<h1>系统与环境函数</h1>
+
+<hr>
+
+<table>
+<tr><td><strong>函数名</strong></td><td><strong>说明</strong></td></tr>
+<tr><td><strong>Clipboard()</strong></td><td>
+
+可选string参数，带参后表示将string复制到剪贴板。<br>
+
+返回值string，表示当前剪贴板上的文本。
+
+</td></tr><tr><td><strong>CommandParm()</strong></td><td>
+
+得到应用程序的命令参数。
+
+</td></tr><tr><td><strong>GetApplication()</strong></td><td>
+
+得到当前应用对象的Handle，以查询或这是应用对象的属性。
+
+</td></tr><tr><td><strong>GetEnvironment(environmentinfo)</strong></td><td>
+
+得到操作系统、处理器、屏幕显示等与系统相关的信息。
+
+</td></tr><tr><td><strong>GetFocus()</strong></td><td>
+
+确定当前焦点位于哪个控件上。
+
+</td></tr><tr><td><strong>Handle(对象名称 {,previous})</strong></td><td>
+
+得到PB窗口型对象的Handle。
+
+</td></tr><tr><td><strong>Post(handle,msgno,word,long/string)</strong></td><td>
+
+将指定消息加入到某个窗口的消息队列中。
+
+</td></tr><tr><td><strong>ProfileInt(文件名, Section, key, default)</strong></td><td>
+
+读取ini文件的String变量。
+</td></tr><tr><td><strong>ProfileString(文件名, section, key, default)</strong></td><td>
+
+读取ini文件的String变量。
+
+</td></tr><tr><td><strong>Restart()</strong></td><td>
+
+停止所有程序段的执行、关闭所有窗口、提交事务、断开与数据库的连接，然后重新启动应用程序。
+
+</td></tr><tr><td><strong>Run(ExecPath {, windowstate})</strong></td><td>
+
+运行指定的应用程序。
+
+</td></tr></table>
 
   </div>
 </article>
