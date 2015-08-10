@@ -403,6 +403,8 @@ WHERE MATCH (列名) AGAINST (&#39;匹配字符串&#39;)
 
 <p><em>page231</em></p>
 
+<p>只有<code>InnoDB</code>表类型支持Transaction。</p>
+
 <p>Transaction 由 <code>Start transaction</code>开始事务，<code>Commit</code>完成事务，<code>Rollback</code>回滚事务。</p>
 
 <p>用于创建、改变、截短（清空）、删表或者用于创建/删除数据库的SQL语句不能被撤销，即不能回滚。</p>
@@ -410,6 +412,12 @@ WHERE MATCH (列名) AGAINST (&#39;匹配字符串&#39;)
 <p>Transaction基于连接，每个连接的事务都是不同的，不能相互提交或回滚对方的事务。</p>
 
 <h1>数据库加密</h1>
+
+<hr>
+
+<p><em>page235</em></p>
+
+<p><code>MySQL</code>内置的加密和解密函数：<code>AES_ENCRYPT()</code>和<code>AES_DECRYPT()</code>。</p>
 
   </div>
 </article>

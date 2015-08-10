@@ -663,7 +663,135 @@ EXECUTE DynamicStagingArea {USING TransactionObject};
 
 运行指定的应用程序。
 
+</td></tr><tr><td><strong>
+Send(handle, messageno, word, long)
+</strong></td><td>
+
+向窗口发送指定消息并立即执行相应的事件处理程序。
+
+</td></tr><tr><td><strong>
+SetProfileString(filename, section, key, value)
+</strong></td><td>
+
+设置初始化文件中指定项的值。
+
+</td></tr><tr><td><strong>
+SignalError({number, text})
+</strong></td><td>
+
+触发应用对象的SystemError事件，通常用于代码调试。
+
+</td></tr><tr><td><strong>
+Yield()
+</strong></td><td>
+
+如果在消息队列中提取到了消息，那么函数返回TRUE，否则返回FALSE。
+
 </td></tr></table>
+
+<h1>定时操作函数</h1>
+
+<hr>
+
+<table>
+<tr><td><strong>函数名</strong></td><td><strong>说明</strong></td></tr>
+<tr><td><strong>CPU()</strong></td><td>
+
+得到自当前应用程序启动后开始CPU所消耗的时间，以毫秒为单位。
+
+</td></tr><tr><td><strong>
+Idle(n)
+</strong></td><td>
+
+该函数在用户每次活动（例如，按键盘、移动鼠标等）后重置定时器，n秒后触发应用对象的 Idle 事件。<br>
+
+n：指定空闲时间间隔，以秒为单位。该参数的值设置为 0 时，停止空闲检测，不再触发应用对象的 Idle 事件。
+
+</td></tr><tr><td><strong>
+Timer(interval {,windowname})
+</strong></td><td>
+
+interval：指定两次触发Timer事件之间的时间间隔，有效值在0到65之间。<br>
+如果该参数的值指定为0，那么关闭定时器，不再触发指定窗口的Timer事件。<br>
+windowname:窗口名，指定时间间隔到时要触发哪个窗口的Timer事件。<br>
+省略该参数时，触发当前窗口的Timer事件
+
+</td></tr></table>
+
+<h1>窗口操作函数</h1>
+
+<hr>
+
+<table>
+<tr><td><strong>函数名</strong></td><td><strong>说明</strong></td></tr>
+<tr><td><strong>
+Close(windowname)
+</strong></td><td>
+关闭窗口
+</td></tr><tr><td><strong>
+CloseWithReturn(windowname, returnvalue)
+</strong></td><td>
+关闭窗口并将返回值保存在returnvalue
+</td></tr><tr><td><strong>
+Open(windowvar{,parent})
+</strong></td><td>
+打开窗口
+</td></tr><tr><td><strong>
+Open(windowvar,windowtype{,parent})
+</strong></td><td>
+打开指定窗口数据类型的一个实例
+</td></tr><tr><td><strong>
+OpenSheet(sheetrefvar{,windowtype},Mdiframe {,position {,arrangeopen}})
+</strong></td><td>
+在 MDI 框架窗口中打开 MDI 子窗口
+</td></tr><tr><td><strong>
+OpenSheetWithParm(sheetrefvar,parameter{,windowtype},mdiframe{,position{,arrangeopen}})
+</strong></td><td>
+在 MDI 框架窗口中打开 MDI 子窗口，同时把参数保存在 Message 对象中进行传递
+</td></tr><tr><td><strong>
+OpenWithParm(windowvar,parameter{,parent})
+</strong></td><td>
+打开窗口，同时把参数保存在Message对象中进行传递
+</td></tr><tr><td><strong>
+OpenWithParm(windowvar,parameter,Windowtype {,parent})
+</strong></td><td>
+打开指定窗口类型的一个实例，同时把参数保存在 Message 对象中进行传递
+
+</td></tr></table>
+
+<h1>类定义查找函数</h1>
+
+<hr>
+
+<p>类定义查找函数用于在一个或多个<code>PowerBuilderLibrary</code>（PBL）中查找对象、全局函数和类型。</p>
+
+<ul>
+<li>FindClassDefinition(classname{,librarylist})</li>
+<li>FindFunctionDefinition(funcname{,librarylist})</li>
+<li>FindTypeDefinition(typename{,librarylist})</li>
+</ul>
+
+<h1>垃圾收集函数</h1>
+
+<hr>
+
+<ul>
+<li>GarbageCollect()</li>
+</ul>
+
+<p>强制系统立即开始收集垃圾</p>
+
+<ul>
+<li>GarbageCollectGetTimeLimit()</li>
+</ul>
+
+<p>获得当前收集垃圾的最小时间间隔</p>
+
+<ul>
+<li>GarbageCollectSetTimeLimit(newtime)</li>
+</ul>
+
+<p>设置垃圾收集操作之间的最小时间间隔</p>
 
   </div>
 </article>
