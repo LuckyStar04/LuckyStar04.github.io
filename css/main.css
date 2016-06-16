@@ -337,7 +337,7 @@ article .container {
 }
 
 article h1 {
-  font-weight: 600;
+  font-weight: 800;
   font-size: 24px;
   margin-bottom: 18px;
   margin-top: 36px;
@@ -345,15 +345,15 @@ article h1 {
 }
 
 article h2 {
-  font-weight: 600;
+  font-weight: 800;
   font-size: 1.3em;
   margin-bottom: 15px;
   margin-top: 15px;
 }
 
 article h3 {
-  font-weight: 600;
-  font-size: 1em;
+  font-weight: 800;
+  font-size: 1.2em;
   margin-bottom: 15px;
   margin-top: 15px;
 }
@@ -362,7 +362,7 @@ article h4{
     display: block;
     font-size: 1.2em;
     margin: 20px 0;
-    font-weight: 600;
+    font-weight: 1200;
     color: #CE2323;
 }
 

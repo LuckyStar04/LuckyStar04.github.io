@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Luckystar's tiny galaxy</title>
+  <meta name="viewport" content="width=device-width">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="http://cdn.bootcss.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.useso.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600' rel='stylesheet' type='text/css'>
+
+  <!-- icons -->
+  <link rel="Shortcut Icon" href="/images/star.ico">
+  <link rel="Bookmark" href="/images/star.ico">
+  <link rel="stylesheet" href="/css/styles/atelier-lakeside.dark.css">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+  <header style="background-image: url(/images/Galaxy.png);">
+  <div class="container post-container">
+    <a href="/" class="home_button"></a>
+    <div class="inner-container">
+      <h1>Android学习笔记</h1>
+      <ul class="meta">
+        <li>
+          <span>
+            Published
+          </span>
+          04 Sep 2015
+        </li>
+        <li>
+          <span>
+            Category
+          </span>
+          android
+        </li>
+      </ul>      
+    </div>
+    <ul class="pagination">
+      
+        <li class="previous">
+          <a href="/powerbuilder/2015/07/13/powerbuilder.html">
+            Previous
+          </a>
+        </li>
+      
+      
+      <li class="next">
+        <a href="/web/2015/09/07/http.html">
+          Next
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <p>《Android SDK Developers Guide Doc》阅读笔记</p>
+
+<h1>一、开始</h1>
+
+<h2>添加Action Bar</h2>
+
+<p><code>Action Bar</code>是Android 3.0以后退出的。</p>
+
+<p>通常使用只需要extends ActionBarActivity，然后在manifest中设置activity的<code>theme</code>。</p>
+
+<p>在3.0以前版本添加，需要include<code>Android Support Library</code>。</p>
+
+<p>添加ActionBar菜单，直接在<code>res/menu/</code>里加xml<code>main_activity_actions.xml</code></p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; &gt;
+    &lt;!-- Search, should appear as action button --&gt;
+    &lt;item android:id=&quot;@+id/action_search&quot;
+          android:icon=&quot;@drawable/ic_action_search&quot;
+          android:title=&quot;@string/action_search&quot;
+          android:showAsAction=&quot;ifRoom&quot; /&gt;
+    &lt;!-- Settings, should always be in the overflow --&gt;
+    &lt;item android:id=&quot;@+id/action_settings&quot;
+          android:title=&quot;@string/action_settings&quot;
+          android:showAsAction=&quot;never&quot; /&gt;
+&lt;/menu&gt;
+</code></pre></div>
+<p>然后再Override<code>onCreateOptionsMenu</code>方法，反射该xml</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu items for use in the action bar
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.main_activity_actions, menu);
+    return super.onCreateOptionsMenu(menu);
+}
+</code></pre></div>
+<p>然后在<code>onOptionsItemSelected</code>里响应选中事件</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">@Override
+public boolean onOptionsItemSelected(MenuItem item) {
+    // Handle presses on the action bar items
+    switch (item.getItemId()) {
+        case R.id.action_search:
+            openSearch();
+            return true;
+        case R.id.action_settings:
+            openSettings();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+    }
+}
+</code></pre></div>
+<p>menifest里可以设置Activity的<code>android:ParentActivityName</code>，然后调用ActionBar的<code>setDisplayHomeAsUpEnabled(true)</code>方法，即可在ActionBar里返回上一个Activity。</p>
+
+<h2>个性化Action Bar</h2>
+
+<h3>采用多种主题</h3>
+
+<p>可以采用多种<code>Android Style &amp; Themes</code>资源来个性化Action Bar。例如</p>
+
+<p><code>Theme.Holo</code>表示一个dark theme，<code>Theme.Holo.Light</code>表示一个light theme。</p>
+
+<p>可以在manifest里为整个application设置theme，或者为单独一个activity设置theme。</p>
+
+<p><code>Theme.Holo.Light.DarkActionBar</code>设置一个Light Theme + dark ActionBar。</p>
+
+<p>如果使用的是Support Library，则应使用<code>Theme.AppCombat</code>主题。</p>
+
+<h3>自定义背景</h3>
+
+<p>只要创建自己的style，然后override其中的<code>actionBarStyle</code>属性即可。</p>
+
+<p>创建style方法如下：（res/values/themes.xml）</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;!-- the theme applied to the application or activity --&gt;
+    &lt;style name=&quot;CustomActionBarTheme&quot;
+           parent=&quot;@android:style/Theme.Holo.Light.DarkActionBar&quot;&gt;
+        &lt;item name=&quot;android:actionBarStyle&quot;&gt;@style/MyActionBar&lt;/item&gt;
+    &lt;/style&gt;
+
+    &lt;!-- ActionBar styles --&gt;
+    &lt;style name=&quot;MyActionBar&quot;
+           parent=&quot;@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse&quot;&gt;
+        &lt;item name=&quot;android:background&quot;&gt;@drawable/actionbar_background&lt;/item&gt;
+    &lt;/style&gt;
+&lt;/resources&gt;
+</code></pre></div>
+<p>如果为了支持Android 2.1以上而采用了Support Library，则需要这样写</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;!-- the theme applied to the application or activity --&gt;
+    &lt;style name=&quot;CustomActionBarTheme&quot;
+           parent=&quot;@style/Theme.AppCompat.Light.DarkActionBar&quot;&gt;
+        &lt;item name=&quot;android:actionBarStyle&quot;&gt;@style/MyActionBar&lt;/item&gt;
+
+        &lt;!-- Support library compatibility --&gt;
+        &lt;item name=&quot;actionBarStyle&quot;&gt;@style/MyActionBar&lt;/item&gt;
+    &lt;/style&gt;
+
+    &lt;!-- ActionBar styles --&gt;
+    &lt;style name=&quot;MyActionBar&quot;
+           parent=&quot;@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse&quot;&gt;
+        &lt;item name=&quot;android:background&quot;&gt;@drawable/actionbar_background&lt;/item&gt;
+
+        &lt;!-- Support library compatibility --&gt;
+        &lt;item name=&quot;background&quot;&gt;@drawable/actionbar_background&lt;/item&gt;
+    &lt;/style&gt;
+&lt;/resources&gt;
+</code></pre></div>
+<p>一是style的parent属性值中应该使用<code>Theme.AppCompat</code>，</p>
+
+<p>二是item中还需再加一行没有<code>android:</code>前缀的item。</p>
+
+<h3>更改字体颜色</h3>
+
+<p>override <code>titleTextStyle</code>属性和<code>actionBarTabTextStyle</code>属性即可。</p>
+
+<h3>将Action Bar提高一层</h3>
+
+<p>可以将ActionBar提高一层，使之覆盖在Activity上。</p>
+
+<p>这样做的好处是，当调用ActionBar的<code>hide()</code>或者<code>show()</code>方法时，不用重绘activity。</p>
+
+<p>Android 3.0以上的方法：</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;resources&gt;
+    &lt;!-- the theme applied to the application or activity --&gt;
+    &lt;style name=&quot;CustomActionBarTheme&quot;
+           parent=&quot;@android:style/Theme.Holo&quot;&gt;
+        &lt;item name=&quot;android:windowActionBarOverlay&quot;&gt;true&lt;/item&gt;
+    &lt;/style&gt;
+&lt;/resources&gt;
+</code></pre></div>
+<p>android 2.1以上，同上面，parent需要为Theme.AppCombat，item name需要加一个不带<code>android:</code>前缀的。</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;resources&gt;
+    &lt;!-- the theme applied to the application or activity --&gt;
+    &lt;style name=&quot;CustomActionBarTheme&quot;
+           parent=&quot;@android:style/Theme.AppCompat&quot;&gt;
+        &lt;item name=&quot;android:windowActionBarOverlay&quot;&gt;true&lt;/item&gt;
+
+        &lt;!-- Support library compatibility --&gt;
+        &lt;item name=&quot;windowActionBarOverlay&quot;&gt;true&lt;/item&gt;
+    &lt;/style&gt;
+&lt;/resources&gt;
+</code></pre></div>
+<p>然后需要在每个activity的最外层的layout，设置</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">android:paddingTop=&quot;?android:attr/actionBarSize&quot;
+</code></pre></div>
+<p>即可。</p>
+
+<p>如果使用的是Support Library，则采用</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">android:paddingTop=&quot;?attr/actionBarSize&quot;
+</code></pre></div>
+<h1>三、支持多种设备</h1>
+
+<h3>支持多国语言</h3>
+
+<p>在res/下添加多个语言的values文件夹，</p>
+
+<p>例如values-es/value-fr/values-zh等。</p>
+
+<p>不同的android设备将会依照自己的设定，读取不同的文件夹。</p>
+
+<h3>支持多种屏幕</h3>
+
+<p>android定义了4种大的屏幕大小：small, normal, large, xlarge</p>
+
+<p>以及4种屏幕密度(density per inch, dpi)：ldpi, mdpi, hdpi, xhdpi</p>
+
+<p>以及两种屏幕方向：landscape(land), portrait</p>
+
+<h3>制作多种大小的图像</h3>
+
+<p>应该为4种屏幕密度提供4种大小的图像，放在不同的drawable文件夹里，以下是缩放倍数：</p>
+
+<ul>
+<li>xhdpi：2.0</li>
+<li>hdpi：1.5</li>
+<li>mdpi：1.0(基准)</li>
+<li>ldpi：0.75</li>
+</ul>
+
+<h2>支持多种安卓版本</h2>
+
+<h3>在manifest里指定 minSdkVersion 和 targetSdkVersion</h3>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;manifest xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; ... &gt;
+    &lt;uses-sdk android:minSdkVersion=&quot;4&quot; android:targetSdkVersion=&quot;15&quot; /&gt;
+    ...
+&lt;/manifest&gt;
+</code></pre></div>
+<p>现在应该是在gradle里配了</p>
+
+<h3>运行时Check系统版本</h3>
+<div class="highlight"><pre><code class="language-java" data-lang="java">private void setUpActionBar() {
+    // Make sure we&#39;re running on Honeycomb or higher to use ActionBar APIs
+    if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.HONEYCOMB) {
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+}
+</code></pre></div>
+<h2>管理activity生命周期</h2>
+
+<p><img src="/images/basic-lifecycle.png" alt="Activity Lifecycle"></p>
+
+<h3>指定App的Launcher Activity</h3>
+
+<p>只需要在manifest的Activity里写</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;activity android:name=&quot;.MainActivity&quot; android:label=&quot;@string/app_name&quot;&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name=&quot;android.intent.action.MAIN&quot; /&gt;
+        &lt;category android:name=&quot;android.intent.category.LAUNCHER&quot; /&gt;
+    &lt;/intent-filter&gt;
+&lt;/activity&gt;
+</code></pre></div>
+<h3>启动Activity</h3>
+
+<p>你只能在<code>onCreate()</code>里实现最基础的动作，这些动作在整个activity的生命周期里只执行一次。</p>
+
+<p><code>onCreate()</code>后马上接上<code>onStart()</code>和<code>onResume()</code>方法，因为activity不会停留在‘Created’和‘Started’状态中。</p>
+
+<h3>销毁Activity</h3>
+
+<p>Activity的最后的回调函数是<code>onDestroy()</code>。大部分的app是不用实现该回调函数的，但如果你的activity启动了后台thread或者其他资源，不释放将会造成内存泄漏的话，就应当在<code>onDestroy()</code>里释放掉它们。</p>
+
+<h3>暂停和继续Activity</h3>
+
+<p>当有另一个Activity部分遮挡住了本Activity时，就会进入paused状态。</p>
+
+<p>系统将自动调用<code>onPause()</code>函数。</p>
+
+<p>在<code>onPause()</code>里应该：</p>
+
+<ul>
+<li><p>停止当前正在进行的工作（例如停止播放视频）</p></li>
+<li><p>提交当前未保存的更改</p></li>
+<li><p>释放系统资源，例如broadcast receivers，摄像头，各种传感器等</p></li>
+</ul>
+
+<p>在<code>onResume()</code>里应该初始化那些在<code>onPause()</code>里释放掉的组件。</p>
+
+<h3>停止和重新启动Activity</h3>
+
+<p>一般来说，由于调用<code>onStop()</code>时，系统仍将Activity保留在内存中，所以只依靠<code>onPause()</code>和<code>onResume()</code>也是可行的。</p>
+
+<p>一般<code>onStop()</code>必须保证，将所有系统资源交还给系统，保留所有用户的数据。</p>
+
+<h3>启动/重新启动Activity</h3>
+
+<p>当Activity重新回到前台时，会调用<code>onRestart()</code>，接着调用<code>onStart()</code>。</p>
+
+<p>一般不用<code>onRestart()</code>来恢复Activity的State。</p>
+
+<h3>重新创建Activity</h3>
+
+<p>当系统将要Stop你的Activity时，Override<code>onSaveInstanceState()</code>来存储<code>Bundle</code>格式的键值对。</p>
+
+<p>当重建activity时，<code>onCreate(Bundle savedInstanceState)</code>和<code>onRestoreInstanceState(Bundle savedInstanceState)</code>存取的是同一个<code>Bundle</code>。</p>
+
+<p>在<code>onCreate()</code>中，可以通过判断传入的Bundle是否是null，来判断activity是重新创建的，还是第一次初始化。</p>
+
+<p>在<code>onRestoreInstanceState()</code>中，只有当存在State被Restore时，系统才会调用<code>onRestoreInstanceState()</code>，所以传入的Bundle一定不是null。</p>
+
+<p>注意：Override函数时记得调用一下父类的函数是个好习惯。</p>
+
+<h2>用Fragment创造动态的UI</h2>
+
+<h3>创建Fragment</h3>
+
+<p>你可以把Fragment想象成activity的一个小模块，它有自己的生命周期，接收自己的输入，可以在运行中加入Activity或者从Activity中删除。</p>
+
+<p>使用Support Library可以让Android 1.6也能支持Fragment。</p>
+
+<h4>创建一个Fragment类</h4>
+
+<p>创建Fragment只需要继承<code>Fragment</code>类，覆写关键生命周期方法，和Activity还是很相似的。</p>
+
+<p>不同之处在于，创建采用的是<code>onCreateView()</code>方法。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public class ArticleFragment extends Fragment {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.article_view, container, false);
+    }
+}
+</code></pre></div>
+<p>就一个实例来说，当Activity的<code>onPause()</code>方法被调用，该Activity下的<code>onPause()</code>方法也会被调用。</p>
+
+<h3>使用XML将Fragment加入一个Activity</h3>
+
+<p>每个Fragment实例必须关联到父类的<code>FragmentActivity</code>。</p>
+
+<p>（注意：<code>FragmentActivity</code>是Support Library提供给旧于APILevel 11的。如果你的最低支持系统高于APILevel 11，你可以直接用普通的Activity。）
+（如果使用v7 appcombat library，则可以直接继承<code>ActionBarActivity</code>，它是<code>FragmentActivity</code>的子类。）</p>
+
+<p>下面是一个例子，当系统适配到layout-large时的布局：</p>
+
+<p>res/layout-large/news_articles.xml</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation=&quot;horizontal&quot;
+    android:layout_width=&quot;fill_parent&quot;
+    android:layout_height=&quot;fill_parent&quot;&gt;
+
+    &lt;fragment android:name=&quot;com.example.android.fragments.HeadlinesFragment&quot;
+              android:id=&quot;@+id/headlines_fragment&quot;
+              android:layout_weight=&quot;1&quot;
+              android:layout_width=&quot;0dp&quot;
+              android:layout_height=&quot;match_parent&quot; /&gt;
+
+    &lt;fragment android:name=&quot;com.example.android.fragments.ArticleFragment&quot;
+              android:id=&quot;@+id/article_fragment&quot;
+              android:layout_weight=&quot;2&quot;
+              android:layout_width=&quot;0dp&quot;
+              android:layout_height=&quot;match_parent&quot; /&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre></div>
+<p>但是，如果你把Fragment写死在XML里，你就不能在运行时移除Fragment。</p>
+
+<p>如果你想要在运行时添加或删除Fragment，你必须在Activity第一次启动时添加Fragment。</p>
+
+<h3>在运行时将Fragment加入Activity</h3>
+
+<p>为了在运行时将Fragment加入Activity，必须采用<code>FragmentManager</code>，创建<code>FragmentTransaction</code>，它提供了增加、移除、替换等操作的API。</p>
+
+<p>如果想要Activity允许移除或替换Fragment，则你应该在activity的<code>onCreate()</code>方法里添加初始的Fragment。并且Activity必须包含一个container<code>View</code>。</p>
+
+<p>下面是另一个例子，layout包含一个<code>FrameLayout</code>来盛放Fragment：</p>
+
+<p>res/layout/news_articles.xml:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;FrameLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:id=&quot;@+id/fragment_container&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot; /&gt;
+</code></pre></div>
+<p>接着应该这样做来添加Fragment</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+
+public class MainActivity extends FragmentActivity {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.news_articles);
+
+        // Check that the activity is using the layout version with
+        // the fragment_container FrameLayout
+        if (findViewById(R.id.fragment_container) != null) {
+
+            // However, if we&#39;re being restored from a previous state,
+            // then we don&#39;t need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
+
+            // Create a new Fragment to be placed in the activity layout
+            HeadlinesFragment firstFragment = new HeadlinesFragment();
+
+            // In case this activity was started with special instructions from an
+            // Intent, pass the Intent&#39;s extras to the fragment as arguments
+            firstFragment.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the &#39;fragment_container&#39; FrameLayout
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, firstFragment).commit();
+        }
+    }
+}
+</code></pre></div>
+<h3>替换Fragment</h3>
+
+<p>替换操作与添加操作很相似，唯一不同是将<code>add()</code>变为<code>replace()</code>。</p>
+
+<p>为了可以让用户按返回键“取消”替换操作，返回前一状态，在commit<code>FragmentTransaction</code>前，必须调用<code>addToBackStack()</code>方法。</p>
+
+<p>举例：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">// Create fragment and give it an argument specifying the article it should show
+ArticleFragment newFragment = new ArticleFragment();
+Bundle args = new Bundle();
+args.putInt(ArticleFragment.ARG_POSITION, position);
+newFragment.setArguments(args);
+
+FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack so the user can navigate back
+transaction.replace(R.id.fragment_container, newFragment);
+transaction.addToBackStack(null);
+
+// Commit the transaction
+transaction.commit();
+</code></pre></div>
+<p><code>addToBackStack()</code>方法接收一个可选字符串参数，指定当前transaction的名字。</p>
+
+<p>这个名字只有在<code>FragmentManager.BackStackEntry</code>API下才有用。</p>
+
+<h3>Fragment间通信</h3>
+
+<p>所有的Fragment间通信都是通过所属的Activity完成的。</p>
+
+<p>任何两个Fragment都不应该直接通信。</p>
+
+<p>一般可以通过让Activity实现一个包含回调函数的接口，然后让Fragment调用该回调函数，从而达到通信的目的。</p>
+
+<h2>保存数据</h2>
+
+<p>大部分App都需要保存数据，甚至有的App要保存大量的数据到文件/数据库里。</p>
+
+<p>本章介绍了如何保存数据。</p>
+
+<h3>保存键值对</h3>
+
+<p>如果你要保存的东西非常少，可以使用<code>SharedPreferences</code>API。</p>
+
+<ul>
+<li><code>getSharedPreferences()</code> 如果你需要用多个Shared Preference文件。第一个字符串参数，指定文件名称。</li>
+<li><code>getPreferences()</code> 当你只需要一个shared preference文件时，用这个。不需要指定文件名称。</li>
+</ul>
+<div class="highlight"><pre><code class="language-java" data-lang="java">Context context = getActivity();
+SharedPreferences sharedPref = context.getSharedPreferences(
+        getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+</code></pre></div><div class="highlight"><pre><code class="language-java" data-lang="java">SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+</code></pre></div>
+<p><code>MODE_PRIVATE</code>表示私有，<code>MODE_WORLD_READABLE</code>/<code>MODE_WORLD_WRITEABLE</code>表示全局可读/可写。（任何App只要知道你的文件名称，即可读取你的数据）</p>
+
+<h4>写数据</h4>
+<div class="highlight"><pre><code class="language-java" data-lang="java">SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+SharedPreferences.Editor editor = sharedPref.edit();
+editor.putInt(getString(R.string.saved_high_score), newHighScore);
+editor.commit();
+</code></pre></div>
+<h4>读数据</h4>
+<div class="highlight"><pre><code class="language-java" data-lang="java">SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+int defaultValue = getResources().getInteger(R.string.saved_high_score_default);
+long highScore = sharedPref.getInt(getString(R.string.saved_high_score), defaultValue);
+</code></pre></div>
+<h3>保存文件</h3>
+
+<p>使用<code>java.io.File</code>对象来读写文件。</p>
+
+<h4>选择‘Internal’或‘External’ Storage</h4>
+
+<p>最早的Android设备分内部存储（非易失性）和外部存储（一般是SD Card）。</p>
+
+<p>但是后来，有些设备将内部存储分为两份，一份internal一份external。</p>
+
+<p>（高于API Level 8，系统即允许用户将App装在外部存储里。只要在manifest里写入</p>
+
+<p>android:installLocation=&quot;preferExternal&quot;即可。）</p>
+
+<h4>获取外部存储权限</h4>
+
+<p>在manifest里写入如下：</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;manifest ...&gt;
+    &lt;uses-permission android:name=&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot; /&gt;
+    &lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; /&gt;
+    ...
+&lt;/manifest&gt;
+</code></pre></div>
+<p>（一般来说获取了外部存储的写权限，系统就自动默认获取了读权限。</p>
+
+<p>然而在将来的版本里可能就不是这样了。所以最好要也获取一下读权限）</p>
+
+<h4>在内部存储保存文件</h4>
+
+<p>有两个方法：</p>
+
+<ul>
+<li>getFilesDir() 返回一个<code>File</code>对象，代表为你的app提供的内部文件夹</li>
+<li>getCacheDir() 返回一个<code>File</code>对象，代表一个临时的cache文件夹</li>
+</ul>
+
+<p>当系统内存不够用时，系统可能会自动清理你的cache，而不会提醒</p>
+
+<p>创建新文件：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">File file = new File(context.getFilesDir(), filename);
+</code></pre></div>
+<p>或者你可以调用<code>openFileOutput()</code>来获取一个<code>FileOutputStream</code>。</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">String filename = &quot;myfile&quot;;
+String string = &quot;Hello world!&quot;;
+FileOutputStream outputStream;
+
+try {
+  outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+  outputStream.write(string.getBytes());
+  outputStream.close();
+} catch (Exception e) {
+  e.printStackTrace();
+}
+</code></pre></div>
+<p>如果你只想缓存一些临时文件，可以调用<code>createTempFile()</code></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">String filename = &quot;myfile&quot;;
+String string = &quot;Hello world!&quot;;
+FileOutputStream outputStream;
+
+try {
+  outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+  outputStream.write(string.getBytes());
+  outputStream.close();
+} catch (Exception e) {
+  e.printStackTrace();
+}
+</code></pre></div>
+<h4>在外部存储保存文件</h4>
+
+<p>因为外部存储分分钟可能就用不了啦————</p>
+
+<p>所以你必须随时验证外部存储是否可用。例如，</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public boolean isExternalStorageWritable() {
+    String state = Environment.getExternalStorageState();
+    if (Environment.MEDIA_MOUNTED.equals(state)) {
+        return true;
+    }
+    return false;
+}
+
+/* Checks if external storage is available to at least read */
+public boolean isExternalStorageReadable() {
+    String state = Environment.getExternalStorageState();
+    if (Environment.MEDIA_MOUNTED.equals(state) ||
+        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+        return true;
+    }
+    return false;
+}
+</code></pre></div>
+<p>如果你想要在外部存储存公共文件，使用<code>getExternalStoragePublicDirectory()</code>方法得到一个<code>File</code>对象，该方法接受一个参数，指定你想要存储的文件类型，例如<code>DIRECTORY_MUSIC</code>或者<code>DIRECTORY_PICTURES</code>。例如</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public File getAlbumStorageDir(String albumName) {
+    // Get the directory for the user&#39;s public pictures directory. 
+    File file = new File(Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_PICTURES), albumName);
+    if (!file.mkdirs()) {
+        Log.e(LOG_TAG, &quot;Directory not created&quot;);
+    }
+    return file;
+}
+</code></pre></div>
+<p>如果想在外部存储存私有文件，使用<code>getExternalFilesDir()</code>，并传入一个参数，指定存储的文件类型。例如</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public File getAlbumStorageDir(Context context, String albumName) {
+    // Get the directory for the app&#39;s private pictures directory. 
+    File file = new File(context.getExternalFilesDir(
+            Environment.DIRECTORY_PICTURES), albumName);
+    if (!file.mkdirs()) {
+        Log.e(LOG_TAG, &quot;Directory not created&quot;);
+    }
+    return file;
+}
+</code></pre></div>
+<p>如果不想指定文件类型，可以直接传入<code>null</code>。</p>
+
+<p><strong>注意：</strong>公共文件在卸载后不会被删除。私有文件会被删除。</p>
+
+<h4>查询剩余磁盘空间</h4>
+
+<p>调用<code>getFreeSpace()</code>和<code>getTotalSpace()</code>。</p>
+
+<h4>删除文件</h4>
+
+<p>1.直接调用<code>File</code>对象的<code>delete()</code>方法。</p>
+
+<p>2.如果文件在内部存储，可以直接调用<code>Context</code>的<code>deleteFile()</code>方法。</p>
+
+<p><strong>注意：</strong>在卸载App时，安卓会删掉以下的文件：</p>
+
+<ul>
+<li>所有你保存在内部存储的文件</li>
+<li>所有用<code>getExternalFilesDir()</code>方法保存在外部存储的文件</li>
+</ul>
+
+<p>无论如何，你都应该手动将<code>getCacheDir()</code>里的Cache文件删除（如果已经没用的话）。</p>
+
+<h2>在SQL数据库里保存数据</h2>
+
+<p>Android使用<code>SQLite</code>数据库。所有的API都在<code>android.database.sqlite</code>包中。</p>
+
+<h2>将用户导向另一个App</h2>
+
+<p>Android使用<code>Intent</code>来进行Activity间的切换。</p>
+
+<p>你可以使用显式的<code>Intent</code>，来指定想要打开的App的Activity，</p>
+
+<p>或者可以使用隐式的<code>Intent</code>，指定打开一类的Activity（例如拍照，打开地图等）</p>
+
+<h3>使用隐式的Intent</h3>
+
+<p>例如，你想要拨打电话，首先得建一个<code>Uri</code></p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">Uri number = Uri.parse(&quot;tel:5551234&quot;);
+Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+</code></pre></div>
+<p>然后你调用<code>startActivity(Intent)</code>，就可以拨打电话了。</p>
+
+<p>又比如，你想要查看地图：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">// Map point based on address
+Uri location = Uri.parse(&quot;geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California&quot;);
+// Or map point based on latitude/longitude
+// Uri location = Uri.parse(&quot;geo:37.422219,-122.08364?z=14&quot;); // z param is zoom level
+Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+</code></pre></div>
+<p>查看网页：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">Uri webpage = Uri.parse(&quot;http://www.android.com&quot;);
+Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+</code></pre></div>
+<p>当不想使用用户已经勾选了的默认App，可以每次都打开Activity Chooser，让用户选择Activity：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">Intent intent = new Intent(Intent.ACTION_SEND);
+...
+
+// Always use string resources for UI text.
+// This says something like &quot;Share this photo with&quot;
+String title = getResources().getString(R.string.chooser_title);
+// Create intent to show chooser
+Intent chooser = Intent.createChooser(intent, title);
+
+// Verify the intent will resolve to at least one activity
+if (intent.resolveActivity(getPackageManager()) != null) {
+    startActivity(chooser);
+}
+</code></pre></div>
+<h2>调用Activity并返回结果</h2>
+
+<p>用<code>startActivityForResult()</code>方法代替<code>startActivity()</code>，</p>
+
+<p>然后重写<code>onActivityResult()</code>得到结果。</p>
+
+<p>被启动的Activity需要调用<code>setResult()</code>设置结果。</p>
+
+<h1>建立App并分享数据</h1>
+
+  </div>
+</article>
+
+</body>
+</html>

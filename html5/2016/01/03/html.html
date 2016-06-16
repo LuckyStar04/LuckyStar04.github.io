@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Luckystar's tiny galaxy</title>
+  <meta name="viewport" content="width=device-width">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="http://cdn.bootcss.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.useso.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600' rel='stylesheet' type='text/css'>
+
+  <!-- icons -->
+  <link rel="Shortcut Icon" href="/images/star.ico">
+  <link rel="Bookmark" href="/images/star.ico">
+  <link rel="stylesheet" href="/css/styles/atelier-lakeside.dark.css">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+  <header style="background-image: url(/images/stars.jpeg);">
+  <div class="container post-container">
+    <a href="/" class="home_button"></a>
+    <div class="inner-container">
+      <h1>HTML5/CSS/JavaScript笔记</h1>
+      <ul class="meta">
+        <li>
+          <span>
+            Published
+          </span>
+          03 Jan 2016
+        </li>
+        <li>
+          <span>
+            Category
+          </span>
+          html5
+        </li>
+      </ul>      
+    </div>
+    <ul class="pagination">
+      
+        <li class="previous">
+          <a href="/web/2015/09/07/http.html">
+            Previous
+          </a>
+        </li>
+      
+      
+      <li class="next">
+        <a href="/python/2016/06/09/python.html">
+          Next
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <h1>HTML5</h1>
+
+<p>HTML5<strong>并不是革命性的发展</strong>，而是保持了对现有HTML规范的<strong>最大兼容</strong>。</p>
+
+<h3>基本元素</h3>
+
+<ul>
+<li><code>&lt;!--  --&gt;</code> 注释</li>
+<li><code>&lt;html&gt;</code>    根元素</li>
+<li><code>&lt;head&gt;</code>    页面头部分</li>
+<li><code>&lt;title&gt;</code>   页面标题</li>
+<li><code>&lt;body&gt;</code>    页面主体</li>
+<li><code>&lt;style&gt;</code>   引入样式定义（css）</li>
+<li><code>&lt;h1&gt;</code>到<code>&lt;h6&gt;</code> 定义标题一到标题六</li>
+<li><code>&lt;p&gt;</code>       定义段落</li>
+<li><code>&lt;br&gt;</code>      插入换行</li>
+<li><code>&lt;hr&gt;</code>      定义水平线</li>
+<li><code>&lt;div&gt;</code>     定义文档中的节</li>
+<li><code>&lt;span&gt;</code>    与<code>&lt;div&gt;</code>相似，但span默认不会换行</li>
+</ul>
+
+<blockquote>
+<p><span>和<p>只能包含文本、图像、超链接、文本格式化元素和表单控件，
+<p>可以包含<span>，而<span>不能包含<p>；<div>除了可以包含上述内容
+，还可以包含<h1>...<h6>、<form>、<table>、列表项和<div>元素。
+正因为如此，所以在HTML5以前，<div>被大量使用于页面布局。</p>
+</blockquote>
+
+<h3>框架frame</h3>
+
+<p>HTML5<strong>不再推荐</strong>在页面中使用框架集。
+HTML5<strong>删除了<frameset/>、<frame/>、<noframes/></strong>3个标签，但依然保留了一个<strong><iframe/></strong>。</p>
+
+<h3>头部head与元信息meta</h3>
+
+<p><base../>元素必须是空元素：
+- href：  指定所有链接的基准链接
+- target：指定超链接默认在哪个窗口打开链接。只能是<code>_blank</code>、<code>_parent</code>、<code>_self</code>、<code>_top</code>之一</p>
+
+  </div>
+</article>
+
+</body>
+</html>

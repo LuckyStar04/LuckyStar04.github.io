@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Luckystar's tiny galaxy</title>
+  <meta name="viewport" content="width=device-width">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="http://cdn.bootcss.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.useso.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600' rel='stylesheet' type='text/css'>
+
+  <!-- icons -->
+  <link rel="Shortcut Icon" href="/images/star.ico">
+  <link rel="Bookmark" href="/images/star.ico">
+  <link rel="stylesheet" href="/css/styles/atelier-lakeside.dark.css">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+  <header style="background-image: url(/images/Galaxy.png);">
+  <div class="container post-container">
+    <a href="/" class="home_button"></a>
+    <div class="inner-container">
+      <h1>Python学习笔记</h1>
+      <ul class="meta">
+        <li>
+          <span>
+            Published
+          </span>
+          09 Jun 2016
+        </li>
+        <li>
+          <span>
+            Category
+          </span>
+          python
+        </li>
+      </ul>      
+    </div>
+    <ul class="pagination">
+      
+        <li class="previous">
+          <a href="/html5/2016/01/03/html.html">
+            Previous
+          </a>
+        </li>
+      
+      
+    </ul>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <p>廖雪峰python笔记</p>
+
+<h1>安装Python</h1>
+
+<h2>Python解释器</h2>
+
+<ul>
+<li>CPython 官方默认解释器，用C语言编写所以叫CPython</li>
+<li>IPython 基于Cpython之上的交互式解释器</li>
+<li>PyPy    采用JIT技术，对Python进行动态编译，目的是为了提升执行速度</li>
+<li>JPython 运行在Java平台的Python解释器</li>
+<li>IronPython 运行在.NET平台的Python解释器</li>
+</ul>
+
+<h1>第一个Python程序</h1>
+
+<h2>使用文本编辑器</h2>
+
+<p>在Mac和Linux上直接运行<code>.py</code>格式文件：</p>
+
+<p>1、在文件第一行加上特殊的注释：</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">#!/usr/bin/env python3
+print(&#39;Hello, world!&#39;)
+</code></pre></div>
+<p>2、给<code>.py</code>格式文件加上执行权限：</p>
+
+<p>$ chmod a+x hello.py</p>
+
+<h1>Python基础</h1>
+
+<h2>数据类型和变量</h2>
+
+<p>Python是动态类型的语言。</p>
+
+<p>在Python中可以直接处理的数据类型有：</p>
+
+<ul>
+<li>整数</li>
+<li>浮点数</li>
+<li>字符串</li>
+<li>布尔值 布尔值可以用<code>and</code>、<code>or</code>和<code>not</code>运算</li>
+<li>空值 空值用<code>none</code>表示</li>
+</ul>
+
+<h2>使用list和tuple</h2>
+
+<h3>list</h3>
+
+<p><code>list</code>用方括号。可以随时 添加和删除list的元素。</p>
+
+<p>例如：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; classmates = [&#39;Michael&#39;, &#39;Bob&#39;, &#39;Tracy&#39;]
+&gt;&gt;&gt; classmates
+[&#39;Michael&#39;, &#39;Bob&#39;, &#39;Tracy&#39;]
+</code></pre></div>
+<p>可以用索引来访问list中每一个位置的元素，</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; classmates[0]
+&#39;Michael&#39;
+&gt;&gt;&gt; classmates[1]
+&#39;Bob&#39;
+&gt;&gt;&gt; classmates[2]
+&#39;Tracy&#39;
+&gt;&gt;&gt; classmates[3]
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+IndexError: list index out of range
+</code></pre></div>
+<p>索引不能越界，会报错误，但可以用<code>-1</code>做索引，直接获取最后一个元素，以此类推：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; classmates[-1]
+&#39;Tracy&#39;
+&gt;&gt;&gt; classmates[-2]
+&#39;Bob&#39;
+&gt;&gt;&gt; classmates[-3]
+&#39;Michael&#39;
+&gt;&gt;&gt; classmates[-4]
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+IndexError: list index out of range
+</code></pre></div>
+<p>但是到-4就越界了。</p>
+
+<ul>
+<li><code>append()</code>在末尾加入元素</li>
+<li><code>insert()</code>在指定位置插入元素</li>
+<li><code>pop()</code>删除末尾元素，pop(i)在删除指定位置的元素</li>
+</ul>
+
+<p>list里可以包含不同种类的元素，甚至是list本身</p>
+
+<h3>tuple</h3>
+
+<p>tuple和list非常类似，但是tuple一旦初始化后就不能更改。</p>
+
+<p>tuple是用圆括号表示的有序列表，叫元组。</p>
+
+<p>因为tuple不可变，所以如果能用tuple代替list就尽量用tuple。</p>
+
+<p>要定义只有一个元素的tuple，只能这么定义：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; t = (1,)
+&gt;&gt;&gt; t
+(1,)
+</code></pre></div>
+<p><code>1</code>后面的逗号不能省，否则t就是一个数了。</p>
+
+<h2>循环</h2>
+
+<p>Python循环有两种，</p>
+
+<h3>for...in循环</h3>
+<div class="highlight"><pre><code class="language-python" data-lang="python">names = [&#39;Michael&#39;, &#39;Bob&#39;, &#39;Tracy&#39;]
+for name in names:
+    print(name)
+</code></pre></div>
+<h3>while循环</h3>
+<div class="highlight"><pre><code class="language-python" data-lang="python">sum = 0
+n = 99
+while n &gt; 0:
+    sum = sum + n
+    n = n - 2
+print(sum)
+</code></pre></div>
+<h2>使用dict和set</h2>
+
+<h3>dict</h3>
+
+<p>dict使用花括号。</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; d = {&#39;Michael&#39;: 95, &#39;Bob&#39;: 75, &#39;Tracy&#39;: 85}
+&gt;&gt;&gt; d[&#39;Michael&#39;]
+95
+</code></pre></div>
+<p>把数据放入dict，除了初始化指定外，还可以通过key放入：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; d[&#39;Jack&#39;] = 90
+&gt;&gt;&gt; d[&#39;Jack&#39;]
+90
+&gt;&gt;&gt; d[&#39;Jack&#39;] = 88
+&gt;&gt;&gt; d[&#39;Jack&#39;]
+88
+</code></pre></div>
+<p>如果读的时候，key不存在，会报错。</p>
+
+<p>要避免key不存在的错误，可以用<code>in</code>判断key是否存在：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; &#39;Thomas&#39; in d
+False
+</code></pre></div>
+<p>或者用dict的<code>get()</code>方法，如果key不存在，返回<code>None</code>或自己指定的值（下面指定了-1）。</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; d.get(&#39;Thomas&#39;)
+&gt;&gt;&gt; d.get(&#39;Thomas&#39;, -1)
+-1
+</code></pre></div>
+<h3>set</h3>
+
+<p>set类似于dict，是一组key的集合，但是没有value。在set中没有重复的key。</p>
+
+<p>创建一个set，需要为<code>set()</code>函数提供一个list:</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; s = set([1, 2, 3])
+&gt;&gt;&gt; s
+{1, 2, 3}
+</code></pre></div>
+<p>重复元素在set中自动被过滤：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; s = set([1, 1, 2, 2, 3, 3])
+&gt;&gt;&gt; s
+{1, 2, 3}
+</code></pre></div>
+<p>通过<code>add(key)</code>方法添加元素到set中。</p>
+
+<p>set和set间可以做数学意义上的交集、并集等操作：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; s1 = set([1, 2, 3])
+&gt;&gt;&gt; s2 = set([2, 3, 4])
+&gt;&gt;&gt; s1 &amp; s2
+{2, 3}
+&gt;&gt;&gt; s1 | s2
+{1, 2, 3, 4}
+</code></pre></div>
+<h1>函数</h1>
+
+<h2>调用函数</h2>
+
+<p>和其他语言一样，必须参数数目和类型均一致。</p>
+
+<h3>数据类型转换</h3>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; int(&#39;123&#39;)
+123
+&gt;&gt;&gt; int(12.34)
+12
+&gt;&gt;&gt; float(&#39;12.34&#39;)
+12.34
+&gt;&gt;&gt; str(1.23)
+&#39;1.23&#39;
+&gt;&gt;&gt; str(100)
+&#39;100&#39;
+&gt;&gt;&gt; bool(1)
+True
+&gt;&gt;&gt; bool(&#39;&#39;)
+False
+</code></pre></div>
+<h3>函数式编程</h3>
+
+<p>可以将函数名赋给一个变量：（函数式编程）</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; a = abs # 变量a指向abs函数
+&gt;&gt;&gt; a(-1) # 所以也可以通过a调用abs函数
+1
+</code></pre></div>
+<h2>定义函数</h2>
+
+<p>在python中，定义函数使用<code>def</code>。</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">def my_abs(x):
+    if x &gt;= 0:
+        return x
+    else:
+        return -x
+</code></pre></div>
+<p>如果想定义一个什么都不做的空函数，可以用<code>pass</code>语句：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">def nop():
+    pass
+</code></pre></div>
+<h3>返回多个值</h3>
+<div class="highlight"><pre><code class="language-python" data-lang="python">import math
+
+def move(x, y, step, angle=0):
+    nx = x + step * math.cos(angle)
+    ny = y - step * math.sin(angle)
+    return nx, ny
+
+&gt;&gt;&gt; x, y = move(100, 100, 60, math.pi / 6)
+&gt;&gt;&gt; print(x, y)
+151.96152422706632 70.0
+</code></pre></div>
+<p>看起来返回了nx, ny两个值，实际上返回的是一个tuple，因为返回tuple可以省去圆括号。</p>
+
+<h2>函数的参数</h2>
+
+<h3>默认参数</h3>
+
+<p>例如，我们可以设置<code>age</code>和<code>city</code>为默认参数：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">def enroll(name, gender, age=6, city=&#39;Beijing&#39;):
+    print(&#39;name:&#39;, name)
+    print(&#39;gender:&#39;, gender)
+    print(&#39;age:&#39;, age)
+    print(&#39;city:&#39;, city)
+</code></pre></div>
+<p>然后大多数只需要提供<code>name</code>和<code>gender</code>：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; enroll(&#39;Sarah&#39;, &#39;F&#39;)
+name: Sarah
+gender: F
+age: 6
+city: Beijing
+</code></pre></div>
+<p>只有与默认参数不符的学生才需要提供额外信息：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">enroll(&#39;Bob&#39;, &#39;M&#39;, 7)
+enroll(&#39;Adam&#39;, &#39;M&#39;, city=&#39;Tianjin&#39;)
+</code></pre></div>
+<p><strong>注意：</strong>默认参数必须指向不变对象！</p>
+
+<h3>可变参数</h3>
+<div class="highlight"><pre><code class="language-python" data-lang="python">def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+</code></pre></div>
+<p>这样写之后，即可以将任意数目的参数传入（包括0个）。</p>
+
+<p>如果想传入的参数是一个list或tuple，可以这样传：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; nums = [1, 2, 3]
+&gt;&gt;&gt; calc(*nums)
+14
+</code></pre></div>
+<h3>关键字参数</h3>
+
+<h1>函数式编程</h1>
+
+<p>python对函数式编程提供部分支持（由于Python允许使用变量）</p>
+
+<h2>高阶函数</h2>
+
+<p>编写高阶函数，就是让函数的参数能够接收别的函数</p>
+
+<h3>map/reduce</h3>
+
+<p>Python内建了<code>map()</code>和<code>reduce()</code>函数。</p>
+
+<p><code>map()</code>函数接收两个参数，一个函数，另一个<code>Iterable</code>，map将传入的函数依次作用到序列的每个元素，并把结果作为新的<code>Iterator</code>返回。</p>
+
+<p><code>reduce()</code>把一个函数作用在一个序列<code>[x1, x2, x3, ...]</code>上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算</p>
+
+<h3>filter</h3>
+
+<p>和map()类似，filter()也接收一个函数和一个序列。和map()不同的是，filter()把传入的函数依次作用于每个元素，然后根据返回值是True还是False决定保留还是丢弃该元素。</p>
+
+<h3>sorted</h3>
+
+<p>Python内置的sorted()函数就可以对list进行排序：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21])
+[-21, -12, 5, 9, 36]
+</code></pre></div>
+<p>此外，sorted()函数也是一个高阶函数，它还可以接收一个key函数来实现自定义的排序，例如按绝对值大小排序：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; sorted([36, 5, -12, 9, -21], key=abs)
+[5, 9, -12, -21, 36]
+</code></pre></div>
+<p>要进行反向排序，不必改动key函数，可以传入第三个参数reverse=True：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; sorted([&#39;bob&#39;, &#39;about&#39;, &#39;Zoo&#39;, &#39;Credit&#39;], key=str.lower, reverse=True)
+[&#39;Zoo&#39;, &#39;Credit&#39;, &#39;bob&#39;, &#39;about&#39;]
+</code></pre></div>
+<h2>返回函数</h2>
+
+<p>一个函数可以返回一个计算结果，也可以返回一个函数。</p>
+
+<p>返回一个函数时，牢记该函数并未执行，返回函数中不要引用任何可能会变化的变量。</p>
+
+<h2>匿名函数</h2>
+
+<p>在Python中，对匿名函数提供了有限支持。还是以map()函数为例，计算f(x)=x2时，除了定义一个f(x)的函数外，还可以直接传入匿名函数：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; list(map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]))
+[1, 4, 9, 16, 25, 36, 49, 64, 81]
+</code></pre></div>
+<p>匿名函数没有名字，所以不必担心函数名冲突。并且同样可以当做返回值返回。</p>
+
+<h2>装饰器decorator</h2>
+
+<p>装饰器函数是一个高阶函数，它接收一个函数作为参数，再返回一个函数，以此来修饰传入函数，扩展函数功能。</p>
+
+<p>例如：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">def log(func):
+    def wrapper(*args, **kw):
+        print(&#39;call %s():&#39; % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+</code></pre></div>
+<p>接着我们就可以调用这个装饰器来装饰其他函数了。</p>
+
+<p>调用方法是<code>@装饰器函数名</code></p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">@log
+def now():
+    print(&#39;2015-3-25&#39;)
+</code></pre></div><div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; now()
+call now():
+2015-3-25
+</code></pre></div>
+<p>如果decorator本身需要传入参数，那就需要编写一个返回decorator的高阶函数</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">def log(text):
+    def decorator(func):
+        def wrapper(*args, **kw):
+            print(&#39;%s %s():&#39; % (text, func.__name__))
+            return func(*args, **kw)
+        return wrapper
+    return decorator
+</code></pre></div>
+<p>用法如下：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">@log(&#39;execute&#39;)
+def now():
+    print(&#39;2015-3-25&#39;)
+</code></pre></div>
+<p>执行结果如下：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; now()
+execute now():
+2015-3-25
+</code></pre></div>
+<p>经过装饰器装饰过的函数，其函数名称已经发生了变化：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">&gt;&gt;&gt; now.__name__
+&#39;wrapper&#39;
+</code></pre></div>
+<p>想要不变化，不需要编写<code>wrapper.__name__ = func.__name__</code>这样的代码，Python内置的<code>functools.wraps</code>就是干这个事的：</p>
+<div class="highlight"><pre><code class="language-python" data-lang="python">import functools
+
+def log(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kw):
+        print(&#39;call %s():&#39; % func.__name__)
+        return func(*args, **kw)
+    return wrapper
+</code></pre></div>
+<p>在面向对象（OOP）的设计模式中，decorator被称为装饰模式。OOP的装饰模式需要通过继承和组合来实现，而Python除了能支持OOP的decorator外，直接从语法层次支持decorator。Python的decorator可以用函数实现，也可以用类实现。</p>
+
+<h2>偏函数</h2>
+
+  </div>
+</article>
+
+</body>
+</html>
