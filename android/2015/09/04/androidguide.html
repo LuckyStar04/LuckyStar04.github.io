@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Luckystar's tiny galaxy</title>
+  <meta name="viewport" content="width=device-width">
+
+  <!-- syntax highlighting CSS -->
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link href="http://cdn.bootcss.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link href='http://fonts.useso.com/css?family=Bitter:400,700,400italic|Open+Sans:400italic,600italic,400,600' rel='stylesheet' type='text/css'>
+
+  <!-- icons -->
+  <link rel="Shortcut Icon" href="/images/star.ico">
+  <link rel="Bookmark" href="/images/star.ico">
+  <link rel="stylesheet" href="/css/styles/atelier-lakeside.dark.css">
+  <script src="/js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+  <header style="background-image: url(/images/Galaxy.png);">
+  <div class="container post-container">
+    <a href="/" class="home_button"></a>
+    <div class="inner-container">
+      <h1>《Android编程权威指南》笔记</h1>
+      <ul class="meta">
+        <li>
+          <span>
+            Published
+          </span>
+          04 Sep 2015
+        </li>
+        <li>
+          <span>
+            Category
+          </span>
+          android
+        </li>
+      </ul>      
+    </div>
+    <ul class="pagination">
+      
+        <li class="previous">
+          <a href="/android/2015/09/04/android.html">
+            Previous
+          </a>
+        </li>
+      
+      
+      <li class="next">
+        <a href="/web/2015/09/07/http.html">
+          Next
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+</header>
+
+<article>
+  <div class="container">
+    <p>《Android编程权威指南》阅读笔记</p>
+
+<h1>第一章</h1>
+
+<p>Android编程约定：</p>
+
+<ul>
+<li>非公有非静态的字段名称以m开头</li>
+<li>静态的字段名称以s开头</li>
+<li>其它字段以小写字母开头</li>
+<li>常量字段应全为大写</li>
+</ul>
+
+<p>本书所有的监听器都作为匿名内部类来实现。这样做的好处有二。其一,在大量代码块中,监听器方法的实现一目了然;其二,匿名内部类的使用只出现在一个地方,因此可以减少一些命名类的使用。</p>
+
+<h1>第二章 Android与MVC设计模式</h1>
+
+<h1>基于MVC模式编程</h1>
+
+<p><strong>Android应用是基于MVC(Model-View-Controller, 模型-视图-控制器)的架构模式进行设计的。</strong>MVC设计模式表明，应用的任何对象，归根结底属于M/V/C三种对象的一种。</p>
+
+<ul>
+<li><strong>模型对象</strong> 存储应用的数据和业务逻辑。Model不关心用户界面，它存在的唯一目的就是存储和管理应用数据。</li>
+<li><strong>视图对象</strong> 知道如何在屏幕上绘制自己以及如何响应用户的输入。一个简单的经验法则是，凡是能够在屏幕上看见的对象，就是视图对象。Android默认自带了很多可配置的视图类。当然，也可以定制开发自己的视图类。</li>
+<li><strong>控制对象</strong> 包含了应用的逻辑单元，是视图与模型对象的联系纽带。在Android里，控制对象通常是<code>Activity</code>、<code>Fragment</code>、<code>Service</code>的一个子类。</li>
+</ul>
+
+<h2>在Bundle中储存数据类型</h2>
+
+<p>注意，我们在Bundle中存储和恢复的数据类型只能是基本数据类型(primitive type)以及可以实现<code>Serializable</code>接口的对象。创建自己的定制类时，如需在<code>onSaveInstanceState()</code>方法中保存类对象，记得实现<code>Serializable</code>接口。</p>
+
+<h1>第七章 UI Fragment 与 Fragment 管理器</h1>
+
+<h2>将 Fragment 托管给 Activity</h2>
+
+<p>托管Fragment有两种方式，</p>
+
+<ul>
+<li>在Activity的Layout中添加Fragment</li>
+<li>在Activity代码中添加Fragment</li>
+</ul>
+
+<p>第一种方式最简单，但灵活性不够
+第二种方式比较复杂，但也是唯一一种可以在运行时控制Fragment的方式。</p>
+
+<h2>创建 Fragment 类</h2>
+
+<p>首先，<code>Fragment.onCreate(Bundle)</code>是公共方法，而<code>Activity.onCreate(Bundle)</code>是保护方法。因为需要被托管的fragment被任何Activity调用。</p>
+
+<p>其次，Fragment同样具有<code>Fragment.onSaveInstanceState(Bundle)</code>。</p>
+
+<p>最后，在<code>Fragment.onCreate()</code>中并没有生成Fragment视图。虽然在<code>Fragment.onCreate()</code>方法中配置了Fragment实例，但创建和配置Fragment视图是通过另一个生命周期方法完成的：</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java">public View onCreateView(LayoutInflater inflater, ViewGroup parent,
+    Bundle savedInstanceState)
+</code></pre></div>
+<h2>FragmentManager</h2>
+
+<p>在Honeycomb中，为协同工作，Activity类中被加入了FragmentManager类。</p>
+
+<p>FragmentManager类具体管理的是：</p>
+
+<ul>
+<li>Fragment队列</li>
+<li>Fragment事务的回退栈。</li>
+</ul>
+
+  </div>
+</article>
+
+</body>
+</html>
